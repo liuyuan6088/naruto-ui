@@ -27,6 +27,7 @@ const ButtonDemo: React.FC = () => {
       <Button href='http://www.baidu.com'>aaa</Button>
 
       <Button type='primary' loading>Primary</Button>
+      <Button type='primary' loading>Primary</Button>
 
       <ButtonGroup>
         {['left', 'mid', 'right'].map((e) => <Button

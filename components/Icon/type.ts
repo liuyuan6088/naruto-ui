@@ -1,6 +1,6 @@
 
 export interface IIconProps {
-  type: string,
+  type?: string,
   size?: number,
   color?: string,
   spin?: boolean,
@@ -8,4 +8,8 @@ export interface IIconProps {
   className?: string,
   style?: React.CSSProperties,
   onClick?: (e: React.MouseEvent) => void
+}
+
+export interface CustomIconOptions {
+  scriptUrl?: string;
 }

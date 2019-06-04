@@ -1,6 +1,7 @@
 import * as React from 'react'
 import cx from 'classnames'
 import * as warning from 'warning'
+import IconFont from './IconFont'
 import { IIconProps } from './type'
 import { primaryName } from '../utils/constant'
 import './style/index.less'
@@ -14,16 +15,19 @@ const defaultProps: IIconProps = {
   prefixCls: `${primaryName}-icon`
 }
 
-const Icon: React.FC<IIconProps> = props => {
-  const { size, color, type, style, className, prefixCls, spin, ...rest } = props
+export const creatScript = (url: string) => {
+  const script = document.createElement('script')
+  script.src = url
+  cacheScript.add(url)
+  document.body.appendChild(script)
+}
+
+const Icon: React.FC<IIconProps> & { createFromIconfontCN?: typeof IconFont } = props => {
+  const { size, color, type, style, className, prefixCls, spin, children, ...rest } = props
 
   useEffect(() => {
-    // console.log(cacheScript)
     if (!cacheScript.has(url)) {
-      const script = document.createElement('script')
-      script.src = url
-      cacheScript.add(url)
-      document.body.appendChild(script)
+      creatScript(url)
     }
   }, [])
 
@@ -43,15 +47,18 @@ const Icon: React.FC<IIconProps> = props => {
     className
   )
 
-  warning(!!type, 'Icon Should have `type` prop.')
+  if (!children && !type) {
+    warning(false, 'Icon Should have `type` prop.')
+  }
 
   return (
     <svg className={classes} {...rest} style={getStyle()}>
-      <use xlinkHref={`#icon-${type}`} />
+      {children && <use xlinkHref={`#icon-${type}`} />}
     </svg>
   )
 }
 
 Icon.defaultProps = defaultProps
+Icon.createFromIconfontCN = IconFont
 
 export default Icon
