@@ -19,13 +19,15 @@ export type AnchorButtonProps = {
 export interface IButtonProps {
   prefixCls?: string,
   disabled?: boolean,
+  loading?: boolean,
   type?: ButtonType,
   size?: ButtonSize,
   block?: boolean,
   htmlType?: ButtonHTMLType,
   className?: string,
-  style?: React.CSSProperties
+  style?: React.CSSProperties,
   href?: string,
+  icon?: string;
   onClick?: (e: React.MouseEvent) => void,
 }
 

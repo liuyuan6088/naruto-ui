@@ -1,0 +1,22 @@
+@import '../../styles/theme/default.less';
+
+@icon-prefix-cls: ~"@{primary-name}-icon";
+
+.@{icon-prefix-cls} {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+  font-size: 18px;
+
+  &-spin {
+    animation: loadingSpin 1s infinite linear;
+  }
+}
+
+@keyframes loadingSpin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
