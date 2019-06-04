@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render button render button with children 1`] = `
+<div>
+  <button
+    class="naruto-btn naruto-btn-default"
+    type="button"
+  >
+    <span>
+      确认
+    </span>
+  </button>
+</div>
+`;
+
+exports[`render button render default 1`] = `
+<div>
+  <button
+    class="naruto-btn naruto-btn-default"
+    type="button"
+  />
+</div>
+`;

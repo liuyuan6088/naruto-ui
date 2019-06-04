@@ -1,0 +1,75 @@
+html,
+html body {
+    font-family: Microsoft Yahei, "Helvetica Neue", Helvetica, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    font-variant: normal;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    color: #333;
+    line-height: 1.5;
+    background-color: #fff;
+    a,
+    a:focus {
+        text-decoration: none;
+    }
+    .clear:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    ul {
+        list-style-type: none;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    ul li {
+        list-style: none;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.layout {
+  width: 100vw;
+  min-height: 100vh;
+  .header {
+    box-shadow: 0 2px 8px #f0f1f2;
+    .logo {
+      font-size: 16px;
+      padding: 20px 0;
+      padding-left: 75px;
+      color: #1890ff;
+    }
+  }
+  .container {
+    display: flex;
+    min-height: calc(100vh - 64px);
+    .siderbar {
+      height: 100%;
+      width: 200px;
+      padding: 10px 0;
+      a {
+        color: #314659!important;
+        font-size: 18px;
+        display: block;
+        text-align: center;
+        padding: 10px 0;
+      }
+    }
+    .content {
+      flex: 1;
+      padding-top: 20px;
+      border-left: 1px solid #ccc;
+    }
+  }
+}
+
+.demo-wrap {
+  color: red;
+}
