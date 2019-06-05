@@ -52,20 +52,12 @@ module.exports = {
         loader: `babel-loader!${path.join(__dirname, './addImportLoader.js')}`
       },
       {
-        test: /\.(css|less)$/,
-        use: [
-          'style-loader',
-          {
-            loader: require.resolve('css-loader'),
-            options: {
-              importLoaders: 1,
-              minimize: true,
-              modules: true
-            }
-          },
-          'postcss-loader',
-          'less-loader'
-        ]
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader']
+      },
+      {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader?importLoaders=2', 'postcss-loader', 'less-loader']
       },
       {
         test: /\.scss$/,

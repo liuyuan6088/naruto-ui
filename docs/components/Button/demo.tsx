@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button } from 'components';
+import { Button } from 'components/index';
 
 const ButtonGroup = Button.Group;
 

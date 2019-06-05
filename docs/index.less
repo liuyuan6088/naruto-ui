@@ -33,39 +33,66 @@ html body {
     img {
         border: none;
     }
+
+    h1,h2,h3,h4,h5,h6 {
+      margin: 0;
+    }
 }
 
 .layout {
   width: 100vw;
   min-height: 100vh;
-  .header {
-    box-shadow: 0 2px 8px #f0f1f2;
-    .logo {
-      font-size: 16px;
-      padding: 20px 0;
-      padding-left: 75px;
-      color: #1890ff;
-    }
-  }
   .container {
     display: flex;
     min-height: calc(100vh - 64px);
-    .siderbar {
-      height: 100%;
-      width: 200px;
-      padding: 10px 0;
-      a {
-        color: #314659!important;
-        font-size: 18px;
-        display: block;
-        text-align: center;
-        padding: 10px 0;
-      }
-    }
     .content {
       flex: 1;
-      padding-top: 20px;
-      border-left: 1px solid #ccc;
+      padding: 20px 40px;
+      .wrap {
+        h1, h2, h3, h4 {
+          margin: 20px 0;
+          font-weight: 600;
+          color: #2c3e50;
+        }
+        .demo-container {
+          padding: 16px;
+          border: 1px solid hsla(0,0%,57.3%,.1);
+          border-radius: 8px;
+          margin-bottom: 20px;
+          margin-top: 3px;
+          position: relative;
+          transition: all .2s ease-in-out;
+          &:hover {
+            box-shadow: 0 2px 18px rgba(0,0,0,.1);
+            border-color: rgba(0,0,0,0);
+          }
+        }
+        table {
+          width: 100%;
+          border-spacing: 0px;
+          box-shadow: 0 0 1px 0 #ccc;
+          thead {
+            th {
+              background-color: #f3f3f3;
+              text-align: left;
+              padding: 12px;
+              border-bottom: 1px solid #eee;
+            }
+          }
+          tbody {
+            td {
+              font-size: 14px;
+              padding: 12px;
+              border-bottom: 1px solid #eee;
+            }
+            tr {
+              td:nth-child(3) {
+                color: #c41d7f
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

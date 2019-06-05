@@ -90,8 +90,8 @@ const formatModule = (imports, js, jsx, state, method) => {
 }
 
 const formatOpening = () => `
-    <div className="at-component__container">
-      <div className="at-component__code">`
+    <div className="demo-container">
+      <div className="demo-code">`
 
 const formatClosing = () => `
       </div>

@@ -1,34 +1,33 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import Header from './Layout/Header';
+import Siderbar from './Layout/Siderbar';
+import Routers from './Layout/Routers';
+import RouteList from './Layout/router';
 import './index.less';
-import Button from './components/Button';
-
-const Routers: React.SFC = () => {
-  return (
-    <div>
-      <Route exact={true} path="/" component={Button} />
-      <Route path="/button" component={Button} />
-    </div>
-  )
-}
 
 const App: React.SFC = ({ children }) => {
   return (
     <Router>
-      <div className={'layout'}>
-        <div className={'header'}>
-          <div className={'logo'}>Naruto</div>
-        </div>
-        <div className={'container'}>
-          <div className={'siderbar'}>
-            <Link to="/button">button</Link>
-          </div>
-          <div className={'content'}>
-            {children}
-          </div>
-        </div>
-      </div>
+      <Route
+        path='/'
+        children={(params) => (
+          params.location.pathname === '/' ?
+            <Redirect to={RouteList[0].route[0].path} /> :
+            (
+              <div className={'layout'}>
+                <Header />
+                <div className={'container'}>
+                  <Siderbar />
+                  <div className={'content'}>
+                    {children}
+                  </div>
+                </div>
+              </div>
+            )
+        )}
+      />
     </Router>
   );
 }
