@@ -53,7 +53,7 @@ const Icon: React.FC<IIconProps> & { createFromIconfontCN?: typeof IconFont } = 
 
   return (
     <svg className={classes} {...rest} style={getStyle()}>
-      {children && <use xlinkHref={`#icon-${type}`} />}
+      {children || <use xlinkHref={`#icon-${type}`} />}
     </svg>
   )
 }

@@ -24,6 +24,7 @@
     height: 32px;
     padding: 0 @btn-space;
     transition: all .3s @ease-in-out;
+    font-size: @font-size-small;
     > span {
       display: inline-block;
       height: 100%;
@@ -92,6 +93,17 @@
     }
     &:hover {
       opacity: 1;
+    }
+  }
+
+  &-link {
+    border: none;
+    color: @primary-color;
+    &:hover {
+      opacity: .8;
+    }
+    &[disabled] {
+      background-color: transparent;
     }
   }
 

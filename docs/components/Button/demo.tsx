@@ -1,43 +1,49 @@
 import * as React from 'react';
-import { Button } from 'components/index';
-
-const ButtonGroup = Button.Group;
+import { Button } from 'components';
+import './index.less';
 
 const ButtonDemo: React.FC = () => {
 
-  const handleClick = (e: React.MouseEvent) => {
-    console.log(e);
-  }
-
   return (
     <React.Fragment>
-      <Button>Default</Button>
-      <Button type='primary'>Primary</Button>
-      <Button type='dashed'>Dashed</Button>
-      <Button type='danger'>Danger</Button>
 
-      <Button type='primary' size='large'>Primary</Button>
-      <Button type='primary' size='small'>Primary</Button>
+      <p>基本按钮</p>
+      <div className='button-box'>
+        <Button>Default</Button>
+        <Button type='primary'>Primary</Button>
+        <Button type='dashed'>Dashed</Button>
+        <Button type='danger'>Danger</Button>
+        <Button type='link'>Link</Button>
+      </div>
 
-      <Button type='primary' disabled={true}>Primary</Button>
-      <Button type='primary' block={true}>Primary</Button>
+      <p>不同尺寸</p>
+      <div className='button-box'>
+        <Button type='primary' size='large'>large</Button>
+        <Button type='primary'>default</Button>
+        <Button type='primary' size='small'>small</Button>
+      </div>
 
-      <Button type='primary' onClick={handleClick}>Primary</Button>
+      <p>禁用</p>
+      <div className='button-box'>
+        <Button type='primary' disabled>disabled</Button>
+      </div>
+      
+      <p>block</p>
+      <div className='button-box'>
+        <Button type='primary' block>block</Button>
+      </div>
 
-      <Button href='http://www.baidu.com'>aaa</Button>
+      <p>a标签</p>
+      <div className='button-box'>
+        <Button href='http://www.baidu.com'>link</Button>
+        <Button type='link' disabled>link(disabled)</Button>
+      </div>
 
-      <Button type='primary' loading>Primary</Button>
-      <Button type='primary' loading>Primary</Button>
+      <p>loading</p>
+      <div className='button-box'>
+        <Button type='primary' loading>loading</Button>
+      </div>
 
-      <ButtonGroup>
-        {['left', 'mid', 'right'].map((e) => <Button
-          key={e}
-          type='primary'
-          onClick={data => {
-            console.log(data);
-          }}
-        >{e}</Button>)}
-      </ButtonGroup>
     </React.Fragment>
   )
 }

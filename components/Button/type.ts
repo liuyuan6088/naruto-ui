@@ -1,6 +1,6 @@
 import { tuple } from '../utils/type';
 
-export const ButtonTypes = tuple('default', 'primary', 'dashed', 'danger');
+export const ButtonTypes = tuple('default', 'primary', 'dashed', 'danger', 'link');
 export type ButtonType = (typeof ButtonTypes)[number];
 
 export const ButtonSizes = tuple('large', 'default', 'small');

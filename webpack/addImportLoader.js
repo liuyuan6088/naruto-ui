@@ -110,7 +110,8 @@ module.exports = function(source) {
     attributes: { imports: importMap }
   } = frontMatter(source)
 
-  const imports = `import * as React from 'react'; ${importMap}`
+  const imports = `import * as React from 'react'; import CodeBox from 'layout/Code'; import Prism from 'layout/Code/Prism';
+  import config from 'layout/fixedConfig'; ${importMap}`
 
   const moduleJS = []
   const state = ''
@@ -121,7 +122,7 @@ module.exports = function(source) {
     validate: params => params.trim().match(/^demo\s*(.*)$/),
     render: (tokens, idx) => {
       // container 从开头到结尾把之间的token跑一遍，其中idx定位到具体的位置
-
+      // console.log(tokens)
       // 获取描述
       const m = tokens[idx].info.trim().match(/^demo\s*(.*)$/)
 
@@ -147,13 +148,14 @@ module.exports = function(source) {
           i++
           token = tokens[idx + i]
         }
+
         // 描述也执行md
         return formatOpening(codeText, md.render(m[1]), flag)
       }
       return formatClosing(flag)
     }
   })
-
+  // console.log(md.render(body).replace(/<h2>([^=]*)<\/h2>/g, `<h2 id="$1">$1<\/h2>`))
   // md 处理过后的字符串含有 class 和 style ，需要再次处理给到react
   const content = md
     .render(body)
@@ -162,6 +164,7 @@ module.exports = function(source) {
     .replace(/<p>/g, '<div>')
     .replace(/<\/p>/g, '</div>')
     .replace(/class=/g, 'className=')
+    .replace(/<h2>(.*?)<\/h2>/g, `<h2 id="$1">$1<\/h2>`) // 加id
     .replace(/style="text-align:center"/g, 'style={{ textAlign: "center"}}')
     .replace(/style="text-align:left"/g, 'style={{ textAlign: "left"}}')
     .replace(/style="text-align:right"/g, 'style={{ textAlign: "right"}}')

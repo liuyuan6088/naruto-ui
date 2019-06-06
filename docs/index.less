@@ -45,14 +45,18 @@ html body {
   .container {
     display: flex;
     min-height: calc(100vh - 64px);
+    margin-top: 64px;
     .content {
       flex: 1;
       padding: 20px 40px;
+      margin-left: 200px;
+      margin-right: 120px;
       .wrap {
         h1, h2, h3, h4 {
           margin: 20px 0;
           font-weight: 600;
           color: #2c3e50;
+          font-size: 30px;
         }
         .demo-container {
           padding: 16px;
@@ -84,6 +88,14 @@ html body {
               font-size: 14px;
               padding: 12px;
               border-bottom: 1px solid #eee;
+              code {
+                margin: 0 1px;
+                padding: .2em .4em;
+                font-size: .9em;
+                background: #f2f4f5;
+                border: 1px solid #eee;
+                border-radius: 3px;
+              }
             }
             tr {
               td:nth-child(3) {
