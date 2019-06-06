@@ -12,10 +12,10 @@ const creat = (options: CustomIconOptions = {}): React.SFC<IIconProps> => {
   }
 
   const Iconfont: React.SFC<IIconProps> = props => {
-    const { type, children, ...rest } = props
+    const { children, ...rest } = props
     let content = null
     if (props.type) {
-      content = <use xlinkHref={`#${type}`} />
+      content = <use xlinkHref={`#${props.type}`} />
     }
     if (children) {
       content = children

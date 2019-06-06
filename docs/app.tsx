@@ -9,14 +9,13 @@ import RouteList from './layout/router';
 import './index.less';
 
 const App: React.SFC = ({ children }) => {
-  const transform = x => x.replace(/<h2>(.*?)<\/h2>/g, `<h2 id="$1">$1</h2>`);
-  console.log(transform('<h2>1</h2><h2>2</h2>'));
+
   return (
     <Router>
       <Route
         path='/'
         children={(params) => (
-          params.location.pathname === '/' ?
+          ['/', '/naruto-ui'].includes(params.location.pathname) ?
             <Redirect to={RouteList[0].route[0].path} /> :
             (
               <div className={'layout'}>

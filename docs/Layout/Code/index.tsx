@@ -22,7 +22,7 @@ const CodeBlock: React.FC<IconProps> = React.memo(({ children, code }) => {
       <div className={`${prefixCls}-block-description dash`}>
         <Icon type='code' onClick={() => setOpen(!open)} />
       </div>
-      <div className={`${prefixCls}-block-code ${open ? 'open' : null}`}>
+      <div className={`${prefixCls}-block-code ${open ? 'open' : ''}`}>
         <Cold>{code}</Cold>
         <div onClick={() => setOpen(false)} className={`${prefixCls}-block-close`}>{'收起代码'}</div>
       </div>

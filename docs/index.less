@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 html,
 html body {
     font-family: Microsoft Yahei, "Helvetica Neue", Helvetica, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
@@ -50,13 +53,30 @@ html body {
       flex: 1;
       padding: 20px 40px;
       margin-left: 200px;
-      margin-right: 120px;
+      margin-right: 130px;
+      max-width: calc(100vw - 330px);
       .wrap {
         h1, h2, h3, h4 {
-          margin: 20px 0;
+          margin: 30px 0;
           font-weight: 600;
           color: #2c3e50;
-          font-size: 30px;
+          font-size: 24px;
+        }
+        h2 + pre {
+          margin: 16px 0;
+          padding: 16px;
+          background-color: #F7F7F7;
+          overflow: auto;
+          border-radius: 4px;
+          font-size: 14px;
+          span {
+            .attr-value {
+              color: #e96900;
+              span {
+                color: #333;
+              }
+            }
+          }
         }
         .demo-container {
           padding: 16px;

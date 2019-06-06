@@ -9,5 +9,18 @@ export default new Map([
     }, {
       title: 'Props',
     }
+  ]],
+  ['/icon', [
+    {
+      title: 'Icon 按钮',
+    }, {
+      title: '基础用法',
+    }, {
+      title: '自定义 font 图标'
+    }, {
+      title: '内置图标(点击复制)'
+    }, {
+      title: 'Props',
+    }
   ]]
 ]);

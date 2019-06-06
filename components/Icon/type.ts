@@ -1,6 +1,6 @@
 
 export interface IIconProps {
-  type?: string,
+  type: string,
   size?: number,
   color?: string,
   spin?: boolean,
