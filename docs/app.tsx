@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { Affix } from 'components'
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Header from './layout/Header';
 import Siderbar from './layout/Siderbar';
@@ -21,11 +22,15 @@ const App: React.SFC = ({ children }) => {
               <div className={'layout'}>
                 <Header />
                 <div className={'container'}>
-                  <Siderbar />
+                  <Affix offsetTop={0}>
+                    <Siderbar />
+                  </Affix>
                   <div className={'content'}>
                     {children}
                   </div>
-                  <FixedNav pathname={params.location.pathname} />
+                  <Affix offsetTop={0}>
+                    <FixedNav pathname={params.location.pathname} />
+                  </Affix>
                 </div>
               </div>
             )
