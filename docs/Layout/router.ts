@@ -1,6 +1,7 @@
 
 import Button from '../components/Button';
 import Icon from '../components/Icon';
+import Affix from '../components/Affix';
 
 export type RouteItem =  {
   key: string,
@@ -20,16 +21,26 @@ const route: RouteConfig = [
     route: [
       {
         key: '按钮',
-        name: 'button 按钮',
+        name: 'Button 按钮',
         path: '/button',
         component: Button,
       }, {
         key: '图标',
-        name: 'icon 图标',
+        name: 'Icon 图标',
         path: '/icon',
         component: Icon,
       }
     ]
+  }, {
+    title: '导航',
+    route: [
+      {
+        key: '固钉',
+        name: 'Affix 固钉',
+        path: '/affix',
+        component: Affix,
+      },
+    ],
   }
 ]
 

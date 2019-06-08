@@ -22,5 +22,14 @@ export default new Map([
     }, {
       title: 'Props',
     }
-  ]]
+  ]],
+  ['/affix', [
+    {
+      title: 'Affix 固钉',
+    }, {
+      title: '使用固钉',
+    }, {
+      title: 'Props'
+    },
+  ]],
 ]);

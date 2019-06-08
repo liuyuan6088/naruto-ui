@@ -12,7 +12,26 @@ initialize {
         "attribs": Object {
           "class": "naruto-icon naruto-icon-thunderbolt naruto-icon-spin naruto-btn-icon",
         },
-        "children": Array [],
+        "children": Array [
+          Object {
+            "attribs": Object {
+              "href": "#icon-thunderbolt",
+            },
+            "children": Array [],
+            "name": "use",
+            "namespace": "http://www.w3.org/2000/svg",
+            "next": null,
+            "parent": [Circular],
+            "prev": null,
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "href": "http://www.w3.org/1999/xlink",
+            },
+            "x-attribsPrefix": Object {
+              "href": "xlink",
+            },
+          },
+        ],
         "name": "svg",
         "namespace": "http://www.w3.org/2000/svg",
         "next": Object {
@@ -64,7 +83,26 @@ initialize {
           "attribs": Object {
             "class": "naruto-icon naruto-icon-thunderbolt naruto-icon-spin naruto-btn-icon",
           },
-          "children": Array [],
+          "children": Array [
+            Object {
+              "attribs": Object {
+                "href": "#icon-thunderbolt",
+              },
+              "children": Array [],
+              "name": "use",
+              "namespace": "http://www.w3.org/2000/svg",
+              "next": null,
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "href": "http://www.w3.org/1999/xlink",
+              },
+              "x-attribsPrefix": Object {
+                "href": "xlink",
+              },
+            },
+          ],
           "name": "svg",
           "namespace": "http://www.w3.org/2000/svg",
           "next": [Circular],
@@ -204,7 +242,26 @@ initialize {
         "attribs": Object {
           "class": "naruto-icon naruto-icon-reload naruto-icon-spin naruto-btn-icon",
         },
-        "children": Array [],
+        "children": Array [
+          Object {
+            "attribs": Object {
+              "href": "#icon-reload",
+            },
+            "children": Array [],
+            "name": "use",
+            "namespace": "http://www.w3.org/2000/svg",
+            "next": null,
+            "parent": [Circular],
+            "prev": null,
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "href": "http://www.w3.org/1999/xlink",
+            },
+            "x-attribsPrefix": Object {
+              "href": "xlink",
+            },
+          },
+        ],
         "name": "svg",
         "namespace": "http://www.w3.org/2000/svg",
         "next": Object {
@@ -256,7 +313,26 @@ initialize {
           "attribs": Object {
             "class": "naruto-icon naruto-icon-reload naruto-icon-spin naruto-btn-icon",
           },
-          "children": Array [],
+          "children": Array [
+            Object {
+              "attribs": Object {
+                "href": "#icon-reload",
+              },
+              "children": Array [],
+              "name": "use",
+              "namespace": "http://www.w3.org/2000/svg",
+              "next": null,
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "href": "http://www.w3.org/1999/xlink",
+              },
+              "x-attribsPrefix": Object {
+                "href": "xlink",
+              },
+            },
+          ],
           "name": "svg",
           "namespace": "http://www.w3.org/2000/svg",
           "next": [Circular],
