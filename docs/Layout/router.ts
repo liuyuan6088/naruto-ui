@@ -2,6 +2,7 @@
 import Button from '../components/Button';
 import Icon from '../components/Icon';
 import Affix from '../components/Affix';
+import Breadcrumb from '../components/Breadcrumb';
 
 export type RouteItem =  {
   key: string,
@@ -39,7 +40,12 @@ const route: RouteConfig = [
         name: 'Affix 固钉',
         path: '/affix',
         component: Affix,
-      },
+      }, {
+        key: '面包屑',
+        name: 'Breadcrumb 面包屑',
+        path: '/breadcrumb',
+        component: Breadcrumb,
+      }
     ],
   }
 ]

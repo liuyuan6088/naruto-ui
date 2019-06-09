@@ -1,8 +1,11 @@
 import * as React from 'react'
 import { IAffixProps } from './type'
+import cx from 'classnames'
+import { primaryName } from '../utils/constant'
 import { throttle } from 'loadsh'
 
 const { useRef, useState, useEffect } = React
+const prefixCls = `${primaryName}-affix`
 
 type ScrollElement = Window | HTMLElement
 
@@ -112,8 +115,10 @@ const Affix: React.FC<IAffixProps> = props => {
     }
   }, [offsetTop, offsetBottom, fixed])
 
+  const classes = cx(prefixCls, className)
+
   return (
-    <div ref={placeholderRef} style={style} className={className}>
+    <div ref={placeholderRef} style={style} className={classes}>
       <div ref={wrapperRef} style={positionStyle}>
         {children}
       </div>

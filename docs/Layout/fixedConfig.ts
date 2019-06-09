@@ -32,4 +32,15 @@ export default new Map([
       title: 'Props'
     },
   ]],
+  ['/breadcrumb', [
+    {
+      title: 'Breadcrumb 面包屑',
+    }, {
+      title: '使用面包屑',
+    }, {
+      title: 'Breadcrumb Props'
+    }, {
+      title: 'Breadcrumb.Item Props'
+    },
+  ]],
 ]);

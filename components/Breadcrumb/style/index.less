@@ -1,0 +1,41 @@
+@import '../../styles/theme/default.less';
+
+@breadcrumb-prefix-cls: ~"@{primary-name}-breadcrumb";
+
+.@{breadcrumb-prefix-cls} {
+  font-size: @font-size-small;
+  color: @gray-1;
+
+  a {
+    color: @gray-1;
+    transition: all .3s @ease-in-out;
+    &:hover {
+      color: @primary-color;
+    }
+  }
+
+  &-separator {
+    margin: 0 8px;
+  }
+
+  & > span {
+    &:last-child {
+      a {
+        color: @gray-0;
+        &:hover {
+          color: @primary-color;
+        }
+      }
+      color: @gray-0;
+      .@{breadcrumb-prefix-cls} {
+        &-separator {
+          display: none;
+        }
+      }
+    }
+    svg {
+      font-size: @font-size-small;
+      margin-right: 4px;
+    }
+  }
+}
