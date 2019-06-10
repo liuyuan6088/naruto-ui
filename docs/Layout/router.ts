@@ -3,6 +3,7 @@ import Button from '../components/Button';
 import Icon from '../components/Icon';
 import Affix from '../components/Affix';
 import Breadcrumb from '../components/Breadcrumb';
+import Modal from '../components/Modal';
 
 export type RouteItem =  {
   key: string,
@@ -45,6 +46,16 @@ const route: RouteConfig = [
         name: 'Breadcrumb 面包屑',
         path: '/breadcrumb',
         component: Breadcrumb,
+      }
+    ],
+  }, {
+    title: '反馈',
+    route: [
+      {
+        key: '对话框',
+        name: 'Modal 对话框',
+        path: '/modal',
+        component: Modal,
       }
     ],
   }

@@ -13,10 +13,11 @@ const defaultProps: IButtonProps = {
   block: false
 }
 
-const handleClick = ({ onClick, disabled }: IButtonProps) => (e: React.MouseEvent) => {
+const handleClick = ({ onClick, disabled, loading }: IButtonProps) => (e: React.MouseEvent) => {
   if (disabled) {
     return
   }
+  if (loading) return
   if (onClick) {
     onClick(e)
   }

@@ -1,0 +1,19 @@
+@import '../../styles/theme/default.less';
+
+@overlay-prefix-cls: ~"@{primary-name}-overlay";
+
+.@{overlay-prefix-cls} {
+
+  &-mask {
+    // width: 100vw;
+    // height: 100vh;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: @maskBgc;
+    z-index: @modalIndex;
+  }
+
+}

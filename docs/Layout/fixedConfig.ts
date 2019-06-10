@@ -43,4 +43,21 @@ export default new Map([
       title: 'Breadcrumb.Item Props'
     },
   ]],
+  ['/modal', [
+    {
+      title: 'Modal 对话框',
+    }, {
+      title: '最简单的用法',
+    }, {
+      title: '自定义底部',
+    }, {
+      title: 'alert 快捷调用',
+    }, {
+      title: 'Modal Props',
+    }, {
+      title: 'Modal 还支持快捷调用的方式',
+    }, {
+      title: 'alert 快捷调用 props',
+    }
+  ]],
 ]);

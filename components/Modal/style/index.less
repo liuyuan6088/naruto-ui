@@ -1,0 +1,221 @@
+@import '../../styles/theme/default.less';
+
+@modal-prefix-cls: ~"@{primary-name}-modal";
+
+.@{modal-prefix-cls} {
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: @modalIndex;
+  outline: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-center {
+    text-align: center;
+  }
+
+  &-wrapper {
+    background: #fff;
+    border-radius: @bordor-radius-1;
+    min-width: 500px;
+    position: relative;
+    color: rgba(0, 0, 0, 0.65);
+    position: relative;
+
+    &-close {
+      position: absolute;
+      top: @space-0;
+      right: @space-1;
+      cursor: pointer;
+      transition: all .2s ease;
+      // &:hover {
+      //   transform: rotate(90deg)
+      // }
+    }
+
+    &-header {
+      padding: @space-0 @space-1;
+      border-bottom: 1px solid @border-color-0;
+      .@{modal-prefix-cls}-title {
+        font-size: @font-size-large;
+        font-weight: 700;
+        color: @gray-2;
+      }
+    }
+
+    &-content {
+      padding: @space-1;
+      font-size: @font-size-small;
+      line-height: 1;
+      word-wrap: break-word;
+    }
+
+    &-footer {
+      padding: @space-sm @space-0;
+      border-top: 1px solid @border-color-0;
+      display: flex;
+      justify-content: flex-end;
+      button {
+        + button {
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+
+  &-mask {
+    // width: 100vw;
+    // height: 100vh;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: @maskBgc;
+    z-index: @modalIndex;
+  }
+
+  &-confirm {
+    &-wrapper {
+      min-width: 400px;
+    }
+  
+    &-wrapper-inner {
+      padding: 32px 32px 24px;
+    }
+  
+    &-body-header {
+      display: flex;
+      align-items: center;
+      padding: @space-sm;
+      > svg {
+        font-size: 24px;
+      }
+    }
+  
+    &-title {
+      margin-left: 10px;
+      color: @gray-2;
+      font-weight: 700;
+    }
+  
+    &-content {
+      padding: 0 45px;
+      margin: 15px 0;
+      color: @gray-0;
+    }
+  
+    &-btn {
+      text-align: right;
+      > button {
+        + button {
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+
+  //
+  &-fade-appear,
+  &-fade-enter {
+    opacity: 0;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+    animation-play-state: paused;
+  }
+
+  &-fade-appear-active,
+  &-fade-enter-active {
+    animation-name: modalFadeIn;
+    animation-play-state: running;
+  }
+
+  &-fade-exit {
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+    animation-play-state: paused;
+  }
+
+  &-fade-exit-active {
+    animation-name: modalFadeOut;
+    animation-play-state: running;
+  }
+
+  &-zoom-appear,
+  &-zoom-enter {
+    opacity: 0;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-timing-function: @ease-out-circ;
+    animation-play-state: paused;
+  }
+
+  &-zoom-appear-active,
+  &-zoom-enter-active {
+    animation-name: modalZoomIn;
+    animation-play-state: running;
+  }
+
+  &-zoom-exit {
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-timing-function: @ease-out-circ;
+    animation-play-state: paused;
+  }
+
+  &-zoom-exit-active {
+    animation-name: modalZoomOut;
+    animation-play-state: running;
+  }
+
+}
+
+@keyframes modalFadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes modalFadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes modalZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes modalZoomOut {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+}
