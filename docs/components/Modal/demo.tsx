@@ -8,6 +8,7 @@ const Demo: React.FC = () => {
 
   const [visible1, setVisible1] = useState<boolean>(false);
   const [visible2, setVisible2] = useState<boolean>(false);
+  const [visible3, setVisible3] = useState<boolean>(false);
 
   return (
     <React.Fragment>
@@ -34,6 +35,22 @@ const Demo: React.FC = () => {
           maskClosable={false}
           onCancel={() => {
             setVisible2(false)
+          }}
+        >
+          modal content
+        </Modal>
+      </div>
+
+      <p>使用 centered style.top 的样式来设置对话框位置。</p>
+      <div className='demo-modal'>
+        <Button onClick={() => setVisible3(true)}>点击</Button>
+        <Modal
+          visible={visible3}
+          // style={{ top: 500 }}
+          centered
+          title='modal title'
+          onCancel={() => {
+            setVisible3(false)
           }}
         >
           modal content

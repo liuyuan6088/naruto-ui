@@ -9,7 +9,7 @@ import { hasScrollBar, getScrollBarWidth } from '../utils/util'
 import { IOverlayProps, CSSTimer } from './type'
 import './style/index.less'
 
-const { useRef, useEffect } = React
+const { useRef, useEffect, useState } = React
 
 interface Animate {
   bodyRef: React.MutableRefObject<React.CSSProperties>
@@ -125,9 +125,11 @@ const Overlay: React.FC<IOverlayProps> = props => {
     hasMask,
     maskTimeout,
     maskAnimation,
-    afterClose
+    afterClose,
+    mousePosition
   } = props
 
+  const [transformOrigin, setTransformOrigin] = useState<string>('center center')
   const bodyRef = useRef<React.CSSProperties>()
   const modalRef = useRef<HTMLDivElement>(null)
   const wrapRef = useRef<HTMLDivElement>(null)
@@ -171,11 +173,13 @@ const Overlay: React.FC<IOverlayProps> = props => {
   }
 
   const getContainer = () => {
+    const classes = cx(`${prefixCls}-${contentAnimation}`)
     const node = (
       <CSSTransition
         in={visible}
         timeout={contentTimeout}
-        classNames={`${prefixCls}-${contentAnimation}`}
+        style={{ transformOrigin }}
+        classNames={classes}
         unmountOnExit={getUnmount()}
         onEnter={() => onAnimateEnter({ bodyRef, wrapRef, maskRef, destroy })}
         onExited={() => {
@@ -214,6 +218,15 @@ const Overlay: React.FC<IOverlayProps> = props => {
   useEffect(() => {
     if (wrapRef.current) {
       wrapRef.current.focus()
+    }
+    if (visible) {
+      if (mousePosition) {
+        setTransformOrigin(
+          `${(mousePosition.x / document.body.clientWidth) * 100}% ${(mousePosition.y /
+            document.body.clientHeight) *
+            100}%`
+        )
+      }
     }
   }, [visible])
 

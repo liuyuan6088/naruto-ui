@@ -4,6 +4,11 @@ export interface CSSTimer {
   exit?: number;
 }
 
+export interface MousePosition {
+  x: number;
+  y: number;
+}
+
 export interface IOverlayProps {
   // 是否显示
   visible?: boolean;
@@ -42,5 +47,7 @@ export interface IOverlayProps {
   // afterClose 弹窗完全关闭后的回调
   afterClose?: () => void;
   // esc 是否支持键盘 esc 关闭 默认为 true
-  esc?: boolean
+  esc?: boolean;
+  // 鼠标点击位置
+  mousePosition?: MousePosition | null;
 }

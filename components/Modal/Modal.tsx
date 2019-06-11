@@ -4,10 +4,14 @@ import Overlay from '../Overlay'
 import Button from '../Button'
 import Confirm, { info, success, error, warning } from './Confirm'
 import { IModalProps } from './type'
+import { MousePosition } from '../Overlay/type'
 import { primaryName } from '../utils/constant'
 import './style/index.less'
 
 const noop = () => {}
+const { useEffect, useCallback } = React
+let mousePosition: MousePosition | null
+let mousePositionEventBinded: boolean
 
 const defaultProps: IModalProps = {
   prefixCls: `${primaryName}-modal`,
@@ -21,7 +25,8 @@ const defaultProps: IModalProps = {
   esc: true,
   style: {},
   confirmLoading: false,
-  maskClosable: true
+  maskClosable: true,
+  centered: false
 }
 
 const renderHeader = ({ title, prefixCls }: IModalProps) => {
@@ -74,8 +79,38 @@ const Modal: React.FC<IModalProps> &
     style,
     width,
     center,
-    afterClose
+    afterClose,
+    centered
   } = props
+
+  const fn = useCallback(
+    (e: MouseEvent) => {
+      mousePosition = {
+        x: e.x,
+        y: e.y
+      }
+      // 100ms 内发生过点击事件，则从点击位置动画展示
+      // 否则直接 zoom 展示
+      const timer = setTimeout(() => {
+        mousePosition = null
+        clearTimeout(timer)
+      }, 100)
+    },
+    [visible]
+  )
+
+  useEffect(() => {
+    if (mousePositionEventBinded) {
+      return () => {}
+    }
+    // 只有点击事件支持从鼠标位置动画展开
+    window.document.documentElement.addEventListener('click', fn)
+    mousePositionEventBinded = true
+    return () => {
+      window.document.documentElement.removeEventListener('click', fn)
+      mousePositionEventBinded = false
+    }
+  }, [visible])
 
   const classes = cx(
     {
@@ -86,11 +121,22 @@ const Modal: React.FC<IModalProps> &
 
   const widthStyle = width ? { width } : {}
 
+  // 默认top 80
+  let wrapperStyle: React.CSSProperties = { top: 80, ...style }
+
+  if (centered) {
+    wrapperStyle = {
+      ...wrapperStyle,
+      top: '50%',
+      transform: 'translate(-50%, -50%)'
+    }
+  }
+
   return (
     <Overlay
       visible={visible}
       prefixCls={prefixCls}
-      wrapperStyle={{ ...widthStyle, ...style }}
+      wrapperStyle={{ ...widthStyle, ...wrapperStyle }}
       wrapperClassName={classes}
       footer={renderFooter(props)}
       header={renderHeader(props)}
@@ -101,6 +147,7 @@ const Modal: React.FC<IModalProps> &
       maskClosable={maskClosable}
       zIndex={zIndex}
       afterClose={afterClose}
+      mousePosition={mousePosition}
     >
       {children}
     </Overlay>

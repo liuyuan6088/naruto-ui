@@ -41,6 +41,8 @@ export interface IModalProps extends ICommonProps {
   center?: boolean;
   // 确定按钮 loading
   confirmLoading?: boolean;
+  // 居中
+  centered?: boolean;
 }
 
 export interface IAlertProps
