@@ -20,7 +20,7 @@ const App: React.SFC = ({ children }) => {
             <Redirect to={RouteList[0].route[0].path} /> :
             (
               <div className={'layout'}>
-                <Header />
+                <Header path={params.location.pathname} />
                 <div className={'container'}>
                   <Affix offsetTop={0}>
                     <Siderbar />
