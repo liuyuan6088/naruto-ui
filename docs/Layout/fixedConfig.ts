@@ -60,4 +60,13 @@ export default new Map([
       title: 'alert 快捷调用 props',
     }
   ]],
+  ['/avatar', [
+    {
+      title: 'Avatar 头像',
+    }, {
+      title: '使用头像',
+    }, {
+      title: 'Props',
+    }
+  ]],
 ]);

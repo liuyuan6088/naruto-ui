@@ -4,6 +4,7 @@ import Icon from '../components/Icon';
 import Affix from '../components/Affix';
 import Breadcrumb from '../components/Breadcrumb';
 import Modal from '../components/Modal';
+import Avatar from '../components/Avatar';
 
 export type RouteItem =  {
   key: string,
@@ -56,6 +57,16 @@ const route: RouteConfig = [
         name: 'Modal 对话框',
         path: '/modal',
         component: Modal,
+      }
+    ],
+  }, {
+    title: '数据展示',
+    route: [
+      {
+        key: '头像',
+        name: 'Avatar 头像',
+        path: '/avatar',
+        component: Avatar,
       }
     ],
   }
