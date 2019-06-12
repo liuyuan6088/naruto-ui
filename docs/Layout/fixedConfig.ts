@@ -69,4 +69,15 @@ export default new Map([
       title: 'Props',
     }
   ]],
+  ['/spin', [
+    {
+      title: 'Spin 加载中',
+    }, {
+      title: '使用加载中',
+    }, {
+      title: '静态方法'
+    }, {
+      title: 'Props',
+    }
+  ]],
 ]);

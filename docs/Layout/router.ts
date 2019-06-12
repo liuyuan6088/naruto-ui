@@ -5,6 +5,7 @@ import Affix from '../components/Affix';
 import Breadcrumb from '../components/Breadcrumb';
 import Modal from '../components/Modal';
 import Avatar from '../components/Avatar';
+import Spin from '../components/Spin';
 
 export type RouteItem =  {
   key: string,
@@ -57,6 +58,11 @@ const route: RouteConfig = [
         name: 'Modal 对话框',
         path: '/modal',
         component: Modal,
+      }, {
+        key: '加载中',
+        name: 'Spin 加载中',
+        path: '/spin',
+        component: Spin,
       }
     ],
   }, {
