@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { IBackTopProps } from './type'
 import Animate from 'rc-animate'
-import { throttle } from 'loadsh'
+import { throttle } from 'lodash'
 import Icon from '../Icon'
 import cx from 'classnames'
 import { scrollToY } from '../utils/scrollTo'

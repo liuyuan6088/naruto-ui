@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { ISpinProps } from './type'
 import cx from 'classnames'
-import { debounce } from 'loadsh'
+import { debounce } from 'lodash'
 import { primaryName } from '../utils/constant'
 import './style/index.less'
 

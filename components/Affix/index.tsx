@@ -2,7 +2,7 @@ import * as React from 'react'
 import { IAffixProps } from './type'
 import cx from 'classnames'
 import { primaryName } from '../utils/constant'
-import { throttle } from 'loadsh'
+import { throttle } from 'lodash'
 
 const { useRef, useState, useEffect } = React
 const prefixCls = `${primaryName}-affix`
