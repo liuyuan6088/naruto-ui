@@ -16,11 +16,11 @@ const App: React.SFC = ({ children }) => {
       <Route
         path='/'
         children={(params) => (
-          ['/', '/naruto-ui'].includes(params.location.pathname) ?
+          ['/', '/naruto-ui/'].includes(params.location.pathname) ?
             <Redirect to={RouteList[0].route[0].path} /> :
             (
               <div className={'layout'}>
-                <Header path={params.location.pathname} />
+                <Header />
                 <div className={'container'}>
                   <Affix offsetTop={0}>
                     <Siderbar />

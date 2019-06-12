@@ -55,6 +55,7 @@
     "loadsh": "0.0.4",
     "normalize.css": "^7.0.0",
     "omit.js": "^1.0.2",
+    "rc-animate": "^2.8.3",
     "react-copy-to-clipboard": "^5.0.1",
     "react-spring": "^8.0.18",
     "react-transition-group": "^4.0.0",

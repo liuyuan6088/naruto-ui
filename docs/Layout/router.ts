@@ -6,6 +6,7 @@ import Breadcrumb from '../components/Breadcrumb';
 import Modal from '../components/Modal';
 import Avatar from '../components/Avatar';
 import Spin from '../components/Spin';
+import BackTop from '../components/BackTop';
 
 export type RouteItem =  {
   key: string,
@@ -48,6 +49,11 @@ const route: RouteConfig = [
         name: 'Breadcrumb 面包屑',
         path: '/breadcrumb',
         component: Breadcrumb,
+      }, {
+        key: '回到顶部',
+        name: 'BackTop 回到顶部',
+        path: '/backTop',
+        component: BackTop,
       }
     ],
   }, {

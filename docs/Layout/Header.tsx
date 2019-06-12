@@ -2,14 +2,11 @@ import * as React from 'react';
 import './index.less';
 
 const prefixCls = `header`;
-interface HeaderProps {
-  path?: string
-}
 
-const Header: React.FC<HeaderProps> = ({ path }) => {
+const Header: React.FC = () => {
   return (
     <div className={prefixCls}>
-      <div className={`${prefixCls}-logo`}>Naruto {path}</div>
+      <div className={`${prefixCls}-logo`}>Naruto</div>
     </div>
     )
 }

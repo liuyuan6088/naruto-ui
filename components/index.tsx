@@ -3,6 +3,7 @@ export { default as Icon } from './Icon'
 
 export { default as Affix } from './Affix'
 export { default as Breadcrumb } from './Breadcrumb'
+export { default as BackTop } from './BackTop'
 
 export { default as Modal } from './Modal'
 export { default as Spin } from './Spin'

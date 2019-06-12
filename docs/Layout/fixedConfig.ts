@@ -80,4 +80,13 @@ export default new Map([
       title: 'Props',
     }
   ]],
+  ['/backTop', [
+    {
+      title: 'BackTop 回到顶部',
+    }, {
+      title: '使用BackTop',
+    }, {
+      title: 'Props',
+    }
+  ]],
 ]);

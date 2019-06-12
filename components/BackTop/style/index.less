@@ -1,0 +1,42 @@
+@import '../../styles/theme/default.less';
+@import '../../styles/mixins/index.less';
+
+@backTop-prefix-cls: ~"@{primary-name}-backTop";
+@icon-prefix-cls: ~"@{primary-name}-icon";
+
+.@{backTop-prefix-cls} {
+  height: 40px;
+  width: 40px;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+
+  &-content {
+    background-color: rgba(0,0,0,0.45);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    transition: all .3s @ease-in-out;
+    &:hover {
+      background-color: rgba(0,0,0,0.65);
+    }
+    > .@{icon-prefix-cls} {
+      font-size: @font-size-large-0
+    }
+  }
+
+  &-string {
+    height: 100%;
+    line-height: 40px;
+    color: #fff;
+    border-radius: @bordor-radius;
+    background-color: @primary-color;
+  }
+
+  cursor: pointer;
+}
