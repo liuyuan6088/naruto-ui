@@ -89,4 +89,13 @@ export default new Map([
       title: 'Props',
     }
   ]],
+  ['/message', [
+    {
+      title: 'Message 全局提示',
+    }, {
+      title: '如何使用',
+    }, {
+      title: 'Props',
+    }
+  ]],
 ]);

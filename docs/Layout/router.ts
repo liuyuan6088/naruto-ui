@@ -7,6 +7,7 @@ import Modal from '../components/Modal';
 import Avatar from '../components/Avatar';
 import Spin from '../components/Spin';
 import BackTop from '../components/BackTop';
+import Message from '../components/Message';
 
 export type RouteItem =  {
   key: string,
@@ -64,6 +65,11 @@ const route: RouteConfig = [
         name: 'Modal 对话框',
         path: '/modal',
         component: Modal,
+      }, {
+        key: '全局提示',
+        name: 'Message 全局提示',
+        path: '/message',
+        component: Message,
       }, {
         key: '加载中',
         name: 'Spin 加载中',

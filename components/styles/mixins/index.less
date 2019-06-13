@@ -1,7 +1,9 @@
 
 @import 'motion';
+@import '../theme/default.less';
 
 .make-motion(fade, fade, .5s);
+.make-motion(move-up, moveUp, .3s);
 
 .fade-enter {
   opacity: 0;
@@ -16,6 +18,59 @@
 .fade-leave {
   animation-duration: .5s;
   animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+}
+
+// .move-up-leave.move-up-leave-active {
+//   overflow: hidden;
+//   animation-name: MoveOut;
+//   animation-duration: 0.3s;
+// }
+.move-up-enter,
+  .move-up-appear {
+    opacity: 0;
+    animation-timing-function: @ease-out-circ;
+  }
+  .move-up-leave {
+    animation-timing-function: @ease-in-circ;
+  }
+
+  @keyframes moveUpIn {
+    0% {
+      transform: translateY(-100%);
+      transform-origin: 0 0;
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0%);
+      transform-origin: 0 0;
+      opacity: 1;
+    }
+  }
+  
+  @keyframes moveUpOut {
+    0% {
+      transform: translateY(0%);
+      transform-origin: 0 0;
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100%);
+      transform-origin: 0 0;
+      opacity: 0;
+    }
+  }
+
+@keyframes MoveOut {
+0% {
+  max-height: 150px;
+  padding: 8px;
+  opacity: 1;
+}
+100% {
+  max-height: 0;
+  padding: 0;
+  opacity: 0;
+}
 }
 
 @keyframes fadeIn {

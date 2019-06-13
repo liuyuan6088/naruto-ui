@@ -1,0 +1,41 @@
+@import '../../styles/theme/default.less';
+@import '../../styles/mixins/index.less';
+
+@message-prefix-cls: ~"@{primary-name}-message";
+
+.@{message-prefix-cls} {
+  padding: @space-sm 18px;
+  background-color: #fff;
+  border-radius: @bordor-radius;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  color: @gray-0;
+  font-size: 16px;
+  font-variant: tabular-nums;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  > svg {
+    margin-right: 6px;
+  }
+  > span {
+    height: 18px;
+    line-height: 1;
+  }
+  + .@{message-prefix-cls} {
+    margin-top: 10px;
+  }
+
+  .message-success {
+    color: @success;
+  }
+  .message-info {
+    color: @info;
+  }
+  .message-error {
+    color: @error;
+  }
+  .message-warning {
+    color: @warning;
+  }
+}
