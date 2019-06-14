@@ -1,7 +1,7 @@
 import Notification from './Notification'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { Properties, Notices, Params, InitRes } from './type'
+import { Properties, Notices, Params, InitRes, AddRes } from './type'
 
 let notices: Notices[] = []
 
@@ -26,11 +26,15 @@ const init = (properties: Properties): InitRes => {
   }
 
   const remove = (key: any) => {
-    notices = notices.filter(e => e.key !== key)
+    const noticesFilter = notices.filter(e => e.key !== key)
+    if (noticesFilter.length === notices.length) {
+      return
+    }
+    notices = noticesFilter
     ReactDOM.render(<Notification {...rest} deleteNotice={remove} notices={notices} />, div)
   }
 
-  const add = (params: Params) => {
+  const add = (params: Params): AddRes => {
     const key = Date.now()
     notices.push({ key, ...params })
     if (maxCount === 0) {
@@ -41,6 +45,11 @@ const init = (properties: Properties): InitRes => {
     }
 
     ReactDOM.render(<Notification {...rest} deleteNotice={remove} notices={notices} />, div)
+
+    // 销毁指定dom
+    return {
+      close: () => remove(key)
+    }
   }
 
   return {

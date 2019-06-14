@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Notification from '../n-notification'
-import { Config, Notice } from './type'
+import { Config, Notice, NoticeRes } from './type'
 import { InitRes } from '../n-notification/type'
 import Icon from '../Icon'
 import { primaryName } from '../utils/constant'
@@ -32,51 +32,91 @@ const config = ({
   if (propsDuration || propsDuration === 0) {
     duration = propsDuration
   }
-  if (propsTransitionName) {
+  if (propsTransitionName || propsTransitionName === '') {
     transitionName = propsTransitionName
   }
 }
 
-const notice = (params: Notice) => {
-  if (!root) {
-    root = Notification.init({
-      duration,
-      top,
-      getContainer,
-      maxCount,
-      prefixCls: `${primaryName}-message`,
-      transitionName
-    })
+const notice = (params: Notice): NoticeRes => {
+  let addRes = {
+    close: () => {}
   }
-  root.add(params)
+
+  let closePromise = new Promise(resolve => {
+    // cb 执行promise resolve
+    let closeCb = () => {
+      const { onClose } = params
+      if (onClose) {
+        onClose()
+      }
+      resolve(true)
+    }
+    if (!root) {
+      root = Notification.init({
+        duration,
+        top,
+        getContainer,
+        maxCount,
+        prefixCls: `${primaryName}-message`,
+        transitionName
+      })
+    }
+
+    addRes = (root as InitRes).add({
+      ...params,
+      onClose: closeCb
+    })
+  })
+
+  const result: NoticeRes = () => {
+    const { close } = addRes
+    const { onClose } = params
+    if (onClose) {
+      onClose()
+    }
+    close()
+  }
+  result.then = (filled, rejected?) => {
+    return closePromise.then(filled, rejected)
+  }
+
+  result.promise = closePromise
+  return result
 }
 
 const info = (params: Notice) => {
   if (!('icon' in params)) {
     params.icon = <Icon className="message-info" type="info-circle-fill" />
   }
-  notice(params)
+  return notice(params)
 }
 
 const success = (params: Notice) => {
   if (!('icon' in params)) {
     params.icon = <Icon className="message-success" type="check-circle-fill" />
   }
-  notice(params)
+  return notice(params)
 }
 
 const error = (params: Notice) => {
   if (!('icon' in params)) {
     params.icon = <Icon className="message-error" type="close-circle-fill" />
   }
-  notice(params)
+  return notice(params)
 }
 
 const warning = (params: Notice) => {
   if (!('icon' in params)) {
     params.icon = <Icon className="message-warning" type="info-circle-fill" />
   }
-  notice(params)
+  return notice(params)
+}
+
+const loading = (params: Notice) => {
+  if (!('icon' in params)) {
+    params.icon = <Icon className="message-info" spin type="sync" />
+  }
+  return notice(params)
 }
 
 const destroy = () => {
@@ -86,11 +126,14 @@ const destroy = () => {
   }
 }
 
-export default {
+const message = {
   config,
   success,
   info,
   error,
   warning,
+  loading,
   destroy
 }
+
+export default message

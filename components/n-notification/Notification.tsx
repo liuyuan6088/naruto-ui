@@ -47,6 +47,15 @@ const Notification: React.FC<INotificationProps> = props => {
     )
   })
 
+  // 没有动效
+  if (transitionName === '') {
+    return (
+      <div style={{ ...style, ...styles }} className={classes}>
+        {noticeNodes}
+      </div>
+    )
+  }
+
   return (
     <div style={{ ...style, ...styles }} className={classes}>
       <Animate components="" transitionName={transitionName}>

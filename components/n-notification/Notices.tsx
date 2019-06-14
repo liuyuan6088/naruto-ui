@@ -62,7 +62,7 @@ const Notices: React.FC<INoticesProps> = props => {
     className
   )
 
-  const showClose = duration === 0 || closable
+  const showClose = closable
 
   return (
     <div className={classes} style={style}>

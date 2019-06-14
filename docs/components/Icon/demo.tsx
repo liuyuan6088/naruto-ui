@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Icon } from 'components';
+import { Icon, message } from 'components';
 import './index.less';
 
 let icons = 
@@ -16,7 +16,9 @@ const IconDemo: React.FC = () => {
         {icons.map((n) => {
           return (
             <CopyToClipboard key={n} text={`<Icon type='${n}' />`}
-              // onCopy={() => { console.log(n) }}
+              onCopy={() => { message.success({
+                content: `<Icon type='${n}' /> 已粘贴`,
+              }) }}
             >
               <li>
                 <div className='icon-demo-icon'><Icon type={n} /></div>

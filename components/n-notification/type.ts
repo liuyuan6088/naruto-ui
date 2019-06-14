@@ -4,8 +4,12 @@ export interface Notices extends Params {
 }
 
 export interface InitRes {
-  add: (params: Params) => void;
+  add: (params: Params) => AddRes;
   destroy: () => void;
+}
+
+export interface AddRes {
+  close: () => void;
 }
 
 export interface Params {
