@@ -8,6 +8,9 @@ import Avatar from '../components/Avatar';
 import Spin from '../components/Spin';
 import BackTop from '../components/BackTop';
 import Message from '../components/Message';
+import Notification from '../components/Notification';
+
+export const rootPath = '/naruto-ui'
 
 export type RouteItem =  {
   key: string,
@@ -71,6 +74,11 @@ const route: RouteConfig = [
         path: '/message',
         component: Message,
       }, {
+        key: '通知提醒框',
+        name: 'Notification 通知提醒框',
+        path: '/notification',
+        component: Notification,
+      }, {
         key: '加载中',
         name: 'Spin 加载中',
         path: '/spin',
@@ -88,6 +96,12 @@ const route: RouteConfig = [
       }
     ],
   }
-]
+].map(e => ({
+  ...e,
+  route: e.route.map(ee => ({
+    ...ee,
+    path: `${rootPath}${ee.path}`
+  }))
+}))
 
 export default route;

@@ -3,9 +3,17 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Properties, Notices, Params, InitRes, AddRes } from './type'
 
-let notices: Notices[] = []
+const symbolKey = (list: any[]) => {
+  let unique = (Math.random() + new Date().getTime()).toString(32).slice(0, 8)
+  if (list.includes(unique)) {
+    return symbolKey(list)
+  } else {
+    return unique
+  }
+}
 
 const init = (properties: Properties): InitRes => {
+  let notices: Notices[] = []
   const div = document.createElement('div')
   const { getContainer, maxCount, ...rest } = properties
   if (getContainer) {
@@ -35,8 +43,23 @@ const init = (properties: Properties): InitRes => {
   }
 
   const add = (params: Params): AddRes => {
-    const key = Date.now()
-    notices.push({ key, ...params })
+    let { simpleKey } = params
+
+    const noticesKeys = []
+    const noticesUpdateKeys = []
+    notices.forEach(e => {
+      if (!e) return
+      if (e.key) noticesKeys.push(e.key)
+      if (e.updateKey) noticesUpdateKeys.push(e.updateKey)
+    })
+
+    const targetIndex = notices.findIndex(e => e.key === simpleKey)
+    if (targetIndex > -1) {
+      notices[targetIndex] = { key: simpleKey, ...params, updateKey: symbolKey(noticesUpdateKeys) }
+    } else {
+      simpleKey = simpleKey ? simpleKey : symbolKey(noticesKeys)
+      notices.push({ key: simpleKey, ...params })
+    }
     if (maxCount === 0) {
       notices = []
     }
@@ -48,12 +71,14 @@ const init = (properties: Properties): InitRes => {
 
     // 销毁指定dom
     return {
-      close: () => remove(key)
+      key: simpleKey,
+      close: () => remove(simpleKey)
     }
   }
 
   return {
     add,
+    remove,
     destroy
   }
 }

@@ -5,7 +5,9 @@ import './index.less';
 
 const prefixCls = `siderbar`;
 
-const Siderbar: React.FC = () => {
+interface ISiderbarProps {}
+
+const Siderbar: React.FC<ISiderbarProps> = () => {
 
   return (
     <div className={prefixCls}>

@@ -14,13 +14,14 @@ const scrollToAnchor = (anchorName: string) => {
 
 interface IFixedNav {
   pathname?: string,
+  rootPath?: string
 }
 
-const FixedNav: React.FC<IFixedNav> = ({ pathname }) => {
+const FixedNav: React.FC<IFixedNav> = ({ pathname, rootPath }) => {
 
   const [index, setIndex] = useState<number>(0)
 
-  const list = config.get(pathname) || [];
+  const list = config.get(pathname.replace(rootPath, '')) || [];
 
   return (
     <div className={prefixCls}>

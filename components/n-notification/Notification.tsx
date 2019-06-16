@@ -6,13 +6,14 @@ import Animate from 'rc-animate'
 import { primaryName } from '../utils/constant'
 import './style/index.less'
 
-const defaultPrefixCls = `${primaryName}-notification`
+const defaultPrefixCls = `${primaryName}-information`
 
 const defaultProps: INotificationProps = {
   transitionName: 'fade',
   notices: [],
   duration: 3,
-  top: 24
+  top: 24,
+  style: {}
   // getContainer: () => document.body
 }
 
@@ -26,20 +27,23 @@ const Notification: React.FC<INotificationProps> = props => {
     duration,
     closeIcon,
     top,
+    closable,
     style
   } = props
 
   const classes = cx(defaultPrefixCls, className)
-  const styles = { top }
+  const styles = 'top' in style ? {} : { top }
 
   const noticeNodes = notices.map(notice => {
+    const shouldUpdate = notice.key
     return (
       <Notice
         prefixCls={prefixCls}
         duration={duration}
         closeIcon={closeIcon}
-        key={notice.key}
+        closable={closable}
         {...notice}
+        key={shouldUpdate}
         autoClose={() => deleteNotice(notice.key)}
       >
         {notice.content}
@@ -50,7 +54,7 @@ const Notification: React.FC<INotificationProps> = props => {
   // 没有动效
   if (transitionName === '') {
     return (
-      <div style={{ ...style, ...styles }} className={classes}>
+      <div style={{ ...styles, ...style }} className={classes}>
         {noticeNodes}
       </div>
     )

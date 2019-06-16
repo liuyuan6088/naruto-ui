@@ -2,6 +2,7 @@
 @import '../../styles/mixins/index.less';
 
 @message-prefix-cls: ~"@{primary-name}-message";
+@span-prefix-cls: ~"@{primary-name}-notice-icon";
 
 .@{message-prefix-cls} {
   padding: 12px 18px;
@@ -17,7 +18,7 @@
   width: fit-content;
   margin: 0 auto;
   cursor: pointer;
-  > svg {
+  > .@{span-prefix-cls} svg {
     margin-right: 6px;
   }
   > span {

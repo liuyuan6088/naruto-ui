@@ -3,13 +3,13 @@
 
 @notice-prefix-cls: ~"@{primary-name}-notice";
 @close-prefix-cls: ~"@{primary-name}-close";
-@notification-prefix-cls: ~"@{primary-name}-notification";
+@notification-prefix-cls: ~"@{primary-name}-information";
 
 .@{notice-prefix-cls} {
   position: relative;
-  &:hover .@{close-prefix-cls} {
-    opacity: 1;
-  }
+  // &:hover .@{close-prefix-cls} {
+  //   opacity: 1;
+  // }
 }
 
 .@{notification-prefix-cls} {
@@ -21,19 +21,20 @@
 }
 
 .@{close-prefix-cls} {
-  opacity: 0;
   transition: all .3s @ease-in-out;
   position: absolute;
-  right: -4px;
-  top: -4px;
+  right: 4px;
+  top: 4px;
   width: 14px;
   height: 14px;
   line-height: 0;
-  background-color: @red-0;
-  border-radius: 50%;
-  padding: 1px;
+  cursor: pointer;
   &-x {
-    font-size: 10px;
-    color: #fff;
+    font-size: 14px;
+    color: @gray-1;
+    transition: all .3s @ease-in-out;
+    &:hover {
+      color: @gray-2
+    }
   }
 }

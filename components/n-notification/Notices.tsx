@@ -21,6 +21,16 @@ const handleClose = (props: INoticesProps) => () => {
   }
 }
 
+const renderChildren = (children: React.ReactNode) => {
+  if (typeof children === 'string') {
+    return <span>{children}</span>
+  }
+  if (children) {
+    return children
+  }
+  return null
+}
+
 const Notices: React.FC<INoticesProps> = props => {
   const {
     closable,
@@ -51,23 +61,16 @@ const Notices: React.FC<INoticesProps> = props => {
         clearTimeout(timer)
       }
     }
-  }, [])
+  }, [duration])
 
-  const classes = cx(
-    prefixCls,
-    `${primaryName}-notice`,
-    {
-      [`${prefixCls}-closable`]: closable
-    },
-    className
-  )
+  const classes = cx(prefixCls, `${primaryName}-notice`, className)
 
   const showClose = closable
 
   return (
     <div className={classes} style={style}>
-      {icon || null}
-      {children && <span>{children}</span>}
+      {icon ? <span className={`${primaryName}-notice-icon`}>{icon}</span> : null}
+      {renderChildren(children)}
       {showClose && (
         <a tabIndex={0} onClick={handleClose(props)} className={`${primaryName}-close`}>
           {closeIcon || <Icon className={`${primaryName}-close-x`} type="close" />}

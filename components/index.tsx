@@ -8,5 +8,6 @@ export { default as BackTop } from './BackTop'
 export { default as Modal } from './Modal'
 export { default as Spin } from './Spin'
 export { default as message } from './Message'
+export { default as notification } from './Notification'
 
 export { default as Avatar } from './Avatar'

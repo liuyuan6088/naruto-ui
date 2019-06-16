@@ -39,7 +39,7 @@ const handleClick3 = async() => {
     duration: 0,
     onClose: () => console.log('close')
   })
-  await sleep(2000)
+  await sleep(20000)
   close()
 }
 

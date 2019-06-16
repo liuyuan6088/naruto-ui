@@ -98,4 +98,17 @@ export default new Map([
       title: 'Props',
     }
   ]],
+  ['/notification', [
+    {
+      title: 'Notification 通知提醒框',
+    }, {
+      title: '如何使用',
+    }, {
+      title: '全局方法',
+    }, {
+      title: 'API',
+    }, {
+      title: 'config',
+    }
+  ]],
 ]);

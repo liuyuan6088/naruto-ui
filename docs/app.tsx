@@ -6,7 +6,7 @@ import Header from './layout/Header';
 import Siderbar from './layout/Siderbar';
 import FixedNav from './layout/FixedNav';
 import Routers from './layout/Routers';
-import RouteList from './layout/router';
+import RouteList, { rootPath } from './layout/router';
 import './index.less';
 
 const App: React.SFC = ({ children }) => {
@@ -29,7 +29,7 @@ const App: React.SFC = ({ children }) => {
                     {children}
                   </div>
                   <Affix offsetTop={0}>
-                    <FixedNav pathname={params.location.pathname} />
+                    <FixedNav rootPath={rootPath} pathname={params.location.pathname} />
                   </Affix>
                 </div>
               </div>

@@ -6,6 +6,7 @@ import Icon from '../Icon'
 import { primaryName } from '../utils/constant'
 import './style/index.less'
 
+let simpleKey = 0
 let root: InitRes | null = null
 let duration = 3
 let top: number
@@ -61,10 +62,11 @@ const notice = (params: Notice): NoticeRes => {
         transitionName
       })
     }
-
+    simpleKey++
     addRes = (root as InitRes).add({
       ...params,
-      onClose: closeCb
+      onClose: closeCb,
+      simpleKey: simpleKey
     })
   })
 
@@ -123,6 +125,7 @@ const destroy = () => {
   if (root) {
     root.destroy()
     root = null
+    simpleKey = 0
   }
 }
 
