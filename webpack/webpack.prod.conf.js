@@ -78,7 +78,8 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              context: ''
+              useRelativePath: true,
+              context: path.resolve(__dirname, '..')
             }
           }
         ]
