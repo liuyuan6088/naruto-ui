@@ -11,3 +11,4 @@ export { default as message } from './Message'
 export { default as notification } from './Notification'
 
 export { default as Avatar } from './Avatar'
+export { default as Tooltip } from './Tooltip'

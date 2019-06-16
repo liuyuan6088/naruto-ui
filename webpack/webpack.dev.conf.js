@@ -38,6 +38,20 @@ module.exports = {
     strictExportPresence: true,
     rules: [
       {
+        test: /\.(png|jpg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              useRelativePath: true,
+              context: path.resolve(__dirname, '..')
+              // name: '[path][name].[ext]',
+              // publicPath: 'assets/'
+            }
+          }
+        ]
+      },
+      {
         test: /\.tsx?$/,
         loader: 'awesome-typescript-loader',
         exclude: /node_modules/
@@ -65,10 +79,6 @@ module.exports = {
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
-      },
-      {
-        test: /\.(png|jpg)$/,
-        loader: 'url-loader?limit=10240'
       }
     ]
   },

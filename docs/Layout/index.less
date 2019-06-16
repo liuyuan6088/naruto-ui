@@ -7,11 +7,37 @@
   width: 100%;
   background-color: #fff;
   z-index: 99;
+  display: flex;
+  justify-content: space-between;
+  &-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 30px;
+  }
   &-logo {
+    height: 50px;
+    margin-right: 16px;
+  }
+  &-desc {
     font-size: 16px;
     padding: 20px 0;
-    padding-left: 75px;
     color: @primary-color;
+  }
+  &-right {
+    display: flex;
+    align-items: center;
+  }
+  &-picker {
+    margin-right: 50px;
+    &-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 4px;
+      background-color: #000;
+      cursor: pointer;
+      border: 2px solid #000;
+    }
   }
 }
 

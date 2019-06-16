@@ -1,0 +1,11 @@
+@import '../../styles/theme/default.less';
+// @import '../../styles/mixins/index.less';
+
+@tooltip-prefix-cls: ~"@{primary-name}-tooltip";
+
+.@{tooltip-prefix-cls} {
+  position: absolute;
+  z-index: @tooltip-basic-zIndex;
+  top: 50%;
+  left: 50%;
+}

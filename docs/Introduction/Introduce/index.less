@@ -1,0 +1,40 @@
+
+@import '../../../components/styles/theme/default.less';
+
+.introduce {
+  padding: 0 20px;
+  position: relative;
+  height: 100%;
+  &-content {
+    // position: absolute;
+    // left: 50%;
+    // transform: translateX(-50%);
+    // z-index: 2;
+    // height: 100%;
+    // background-color: rgba(255,255,255,.4);
+  }
+  p {
+    color: #0d1a26;
+    font-weight: 500;
+    font-size: 24px;
+    margin: 30px 0
+  }
+  &-desc {
+    font-size: 16px;
+    li + li {
+      margin-top: 8px;
+      a {
+        color: @primary-color;
+      }
+    }
+  }
+  &-img {
+    position: absolute;
+    top: 0;
+    width: 450px;
+    z-index: 1;
+    &-right {
+      right: 0;
+    }
+  }
+}

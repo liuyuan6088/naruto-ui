@@ -1,4 +1,4 @@
-
+import Introduce from '../Introduction/Introduce';
 import Button from '../components/Button';
 import Icon from '../components/Icon';
 import Affix from '../components/Affix';
@@ -9,6 +9,7 @@ import Spin from '../components/Spin';
 import BackTop from '../components/BackTop';
 import Message from '../components/Message';
 import Notification from '../components/Notification';
+import Tooltip from '../components/Tooltip';
 
 export const rootPath = '/naruto-ui'
 
@@ -16,7 +17,7 @@ export type RouteItem =  {
   key: string,
   name: string,
   path: string,
-  component: () => JSX.Element;
+  component: (() => JSX.Element) | (React.FunctionComponent<{}>);
 }
 
 export type RouteConfig = Array<{
@@ -25,6 +26,17 @@ export type RouteConfig = Array<{
 }>;
 
 const route: RouteConfig = [
+  {
+    title: '入门',
+    route: [
+      {
+        key: '介绍',
+        name: '介绍',
+        path: '/introduce',
+        component: Introduce,
+      },
+    ]
+  },
   {
     title: '通用',
     route: [
@@ -93,12 +105,17 @@ const route: RouteConfig = [
         name: 'Avatar 头像',
         path: '/avatar',
         component: Avatar,
+      }, {
+        key: '文字提示',
+        name: 'Tooltip 文字提示',
+        path: '/tooltip',
+        component: Tooltip,
       }
     ],
   }
 ].map(e => ({
   ...e,
-  route: e.route.map(ee => ({
+  route: (e as any ).route.map((ee: RouteItem) => ({
     ...ee,
     path: `${rootPath}${ee.path}`
   }))
