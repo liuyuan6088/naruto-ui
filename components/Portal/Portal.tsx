@@ -4,6 +4,8 @@ import { primaryName } from '../utils/constant'
 import Animate from 'rc-animate'
 import { IPortalProps } from './type'
 import cx from 'classnames'
+import { getClientSize } from '../utils/util'
+import { useEnhancedEffect, useClickOutSide } from '../utils/useCustom'
 
 const { useState, useRef, useEffect } = React
 
@@ -11,35 +13,19 @@ const defaultProps: IPortalProps = {
   prefixCls: `${primaryName}-dropdown`,
   placement: 'top',
   trigger: 'hover',
-  wrapperComponent: 'span',
+  wrapperComponent: 'div',
   transitionName: 'fade',
   wrapperStyle: {},
   dropDownStyle: {},
+  hasTriangle: false,
   disabled: false,
-  visible: false
+  isClickOutSideClose: true,
+  autoAdjustOverflow: true,
+  offset: 0,
+  onVisibleChange: () => {},
+  mouseEnterDelay: 0.1,
+  mouseLeaveDelay: 0.1
 }
-
-const toggle = (
-  { disabled, trigger, visible }: IPortalProps,
-  triggerStr: string,
-  toggle: boolean
-) => {
-  if (disabled) return
-  if (trigger === triggerStr) {
-    // 只在变化的时候回调
-    if (toggle !== visible) {
-      // onVisibleChange(toggle)
-    }
-  }
-}
-
-const handleClick = (props: IPortalProps) => () => {
-  toggle(props, 'click', true)
-}
-
-const handleMouseEnter = () => {}
-
-const handleMouseLeave = () => {}
 
 const renderChildren = ({ disabled }: IPortalProps, children: React.ReactNode) => {
   if (typeof children === 'string') {
@@ -53,39 +39,6 @@ const renderChildren = ({ disabled }: IPortalProps, children: React.ReactNode) =
   return null
 }
 
-const renderDropDown = (
-  { prefixCls, dropDownClassName, transitionName, dropDownStyle, visible, content }: IPortalProps,
-  contentRef: React.MutableRefObject<HTMLDivElement>
-) => {
-  const classes = cx(
-    prefixCls,
-    {
-      // [`${prefixCls}-${newPlacement}`]: newPlacement,
-      // [`${prefixCls}-triangle`]: hasTriangle
-    },
-    dropDownClassName
-  )
-
-  return (
-    <Animate components="" transitionName={transitionName}>
-      {visible ? (
-        <div
-          className={classes}
-          ref={contentRef}
-          // onClick={() => {
-          //   onVisibleChange(false)
-          // }}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          style={dropDownStyle}
-        >
-          <div className={`${prefixCls}-content`}>{content}</div>
-        </div>
-      ) : null}
-    </Animate>
-  )
-}
-
 const getContainer = ({ getContainer }: IPortalProps) => {
   if (getContainer) {
     return getContainer()
@@ -93,29 +46,315 @@ const getContainer = ({ getContainer }: IPortalProps) => {
   return document.body
 }
 
+const getPlacement = (
+  { placement, autoAdjustOverflow }: IPortalProps,
+  wrapperRef: React.MutableRefObject<HTMLElement>,
+  contentRef: React.MutableRefObject<HTMLElement>,
+  newPlacement: IPortalProps['placement'],
+  setPlacement: any
+) => {
+  let clonePlacement: string = placement
+  const rect = (wrapperRef.current as HTMLElement).getBoundingClientRect()
+  const contentRect = (contentRef.current as HTMLElement).getBoundingClientRect()
+  if (autoAdjustOverflow) {
+    // 浏览器尺寸
+    const { width, height } = getClientSize()
+    switch (placement) {
+      case 'top':
+        clonePlacement = rect.top < contentRect.height ? 'bottom' : 'top'
+        clonePlacement = `${clonePlacement}${
+          rect.left + rect.width / 2 < contentRect.width / 2 ? 'Left' : ''
+        }`
+        break
+      case 'topLeft':
+        clonePlacement = rect.top < contentRect.height ? 'bottom' : 'top'
+        clonePlacement = `${clonePlacement}${
+          width - rect.left < contentRect.width / 2 ? 'Right' : 'Left'
+        }`
+        break
+      case 'topRight':
+        clonePlacement = rect.top < contentRect.height ? 'bottom' : 'top'
+        clonePlacement = `${clonePlacement}${rect.right < contentRect.width ? 'Left' : 'Right'}`
+        break
+      case 'bottom':
+        clonePlacement = height - rect.bottom < contentRect.height ? 'top' : 'bottom'
+        clonePlacement = `${clonePlacement}${
+          rect.left + rect.width / 2 < contentRect.width / 2 ? 'Left' : ''
+        }`
+        break
+      case 'bottomLeft':
+        clonePlacement = height - rect.bottom < contentRect.height ? 'top' : 'bottom'
+        clonePlacement = `${clonePlacement}${
+          width - rect.left < contentRect.width / 2 ? 'Right' : 'Left'
+        }`
+        break
+      case 'bottomRight':
+        clonePlacement = height - rect.bottom < contentRect.height ? 'top' : 'bottom'
+        clonePlacement = `${clonePlacement}${rect.right < contentRect.width ? 'Left' : 'Right'}`
+        break
+      case 'left':
+        clonePlacement = rect.left < contentRect.width ? 'right' : 'left'
+        clonePlacement = `${clonePlacement}${
+          rect.top + rect.height / 2 < contentRect.height / 2 ? 'Top' : ''
+        }`
+        break
+      case 'leftTop':
+        clonePlacement = rect.left < contentRect.width ? 'right' : 'left'
+        clonePlacement = `${clonePlacement}${
+          height - rect.top < contentRect.height ? 'Bottom' : 'Top'
+        }`
+        break
+      case 'leftBottom':
+        clonePlacement = rect.left < contentRect.width ? 'right' : 'left'
+        clonePlacement = `${clonePlacement}${rect.bottom < contentRect.height ? 'Top' : 'Bottom'}`
+        break
+      case 'right':
+        clonePlacement = width - rect.right < contentRect.width ? 'left' : 'right'
+        clonePlacement = `${clonePlacement}${
+          rect.top + rect.height / 2 < contentRect.height / 2 ? 'Top' : ''
+        }`
+        break
+      case 'rightTop':
+        clonePlacement = width - rect.right < contentRect.width ? 'left' : 'right'
+        clonePlacement = `${clonePlacement}${
+          height - rect.top < contentRect.height ? 'Bottom' : 'Top'
+        }`
+        break
+      case 'rightBottom':
+        clonePlacement = width - rect.right < contentRect.width ? 'left' : 'right'
+        clonePlacement = `${clonePlacement}${rect.bottom < contentRect.height ? 'Top' : 'Bottom'}`
+        break
+      default:
+        break
+    }
+    // 修改方向
+    if (clonePlacement !== newPlacement) {
+      setPlacement(clonePlacement)
+    }
+  }
+  return { rect, contentRect, clonePlacement }
+}
+
+const setContentStyle = (
+  contentRef: React.MutableRefObject<HTMLElement>,
+  top: string,
+  left: string
+) => {
+  ;(contentRef.current as HTMLElement).style.top = top
+  ;(contentRef.current as HTMLElement).style.left = left
+}
+
+const getPosition = (
+  props: IPortalProps,
+  wrapperRef: React.MutableRefObject<HTMLElement>,
+  contentRef: React.MutableRefObject<HTMLElement>,
+  newPlacement: IPortalProps['placement'],
+  setPlacement: any
+) => {
+  const { offset, mode } = props
+  const { rect, contentRect, clonePlacement } = getPlacement(
+    props,
+    wrapperRef,
+    contentRef,
+    newPlacement,
+    setPlacement
+  )
+  // top = wrapperRef 距离浏览器顶部距离+高度+偏移度+浏览器Y滚动的距离
+  let top = `${rect.top + rect.height + offset + window.pageYOffset}px`
+  // left = wrapperRef 距离浏览器左侧距离+浏览器X滚动的距离
+  let left = `${rect.left + window.pageXOffset}px`
+  if (contentRect.width < rect.width && mode === 'dropdown') {
+    contentRef.current.style.minWidth = `${rect.width}px`
+  }
+  switch (clonePlacement) {
+    case 'top':
+      top = `${rect.top - offset - contentRect.height + window.pageYOffset}px`
+      left = `${rect.left + rect.width / 2 - contentRect.width / 2 + window.pageXOffset}px`
+      setContentStyle(contentRef, top, left)
+      break
+    case 'topLeft':
+      top = `${rect.top - offset - contentRect.height + window.pageYOffset}px`
+      left = `${rect.left + window.pageXOffset}px`
+      setContentStyle(contentRef, top, left)
+      break
+    case 'topRight':
+      top = `${rect.top - offset - contentRect.height + window.pageYOffset}px`
+      left = `${rect.right - contentRect.width + window.pageXOffset}px`
+      setContentStyle(contentRef, top, left)
+      break
+    case 'bottom':
+      top = `${rect.top + rect.height + offset + window.pageYOffset}px`
+      left = `${rect.left + rect.width / 2 - contentRect.width / 2 + window.pageXOffset}px`
+      setContentStyle(contentRef, top, left)
+      break
+    case 'bottomLeft':
+      top = `${rect.top + rect.height + offset + window.pageYOffset}px`
+      left = `${rect.left + window.pageXOffset}px`
+      setContentStyle(contentRef, top, left)
+      break
+    case 'bottomRight':
+      top = `${rect.top + rect.height + offset + window.pageYOffset}px`
+      left = `${rect.right - contentRect.width + window.pageXOffset}px`
+      setContentStyle(contentRef, top, left)
+      break
+    case 'left':
+      top = `${rect.top + rect.height / 2 - contentRect.height / 2 + window.pageYOffset}px`
+      left = `${rect.left - offset - contentRect.width + window.pageXOffset}px`
+      setContentStyle(contentRef, top, left)
+      break
+    case 'leftTop':
+      top = `${rect.top + window.pageYOffset}px`
+      left = `${rect.left - offset - contentRect.width + window.pageXOffset}px`
+      setContentStyle(contentRef, top, left)
+      break
+    case 'leftBottom':
+      top = `${rect.top + rect.height - contentRect.height + window.pageYOffset}px`
+      left = `${rect.left - offset - contentRect.width + window.pageXOffset}px`
+      setContentStyle(contentRef, top, left)
+      break
+    case 'right':
+      top = `${rect.top + rect.height / 2 - contentRect.height / 2 + window.pageYOffset}px`
+      left = `${rect.right + offset + window.pageXOffset}px`
+      setContentStyle(contentRef, top, left)
+      break
+    case 'rightTop':
+      top = `${rect.top + window.pageYOffset}px`
+      left = `${rect.right + offset + window.pageXOffset}px`
+      setContentStyle(contentRef, top, left)
+      break
+    case 'rightBottom':
+      top = `${rect.top + rect.height - contentRect.height + window.pageYOffset}px`
+      left = `${rect.right + offset + window.pageXOffset}px`
+      setContentStyle(contentRef, top, left)
+      break
+    default:
+      setContentStyle(contentRef, top, left)
+      break
+  }
+}
+
 const Portal: React.FC<IPortalProps> = props => {
   const {
-    // trigger,
+    trigger,
+    disabled,
+    isClickOutSideClose,
     wrapperComponent: Component,
     wrapperStyle,
+    placement,
+    onVisibleChange,
+    visible: controlledVisible,
+    mouseEnterDelay,
+    mouseLeaveDelay,
     children
   } = props
 
   const [mountNode, setMountNode] = useState(null)
+  const [visible, setVisible] = useState(false)
+  const [newPlacement, setPlacement] = React.useState(placement)
 
   const wrapperRef = useRef<HTMLElement>()
   const contentRef = useRef<HTMLDivElement>()
+  const timeoutRef = React.useRef<any>()
+
+  useEffect(() => {
+    if (controlledVisible !== undefined) {
+      setVisible(controlledVisible)
+    }
+  }, [controlledVisible])
 
   useEffect(() => {
     setMountNode(getContainer(props))
   }, [getContainer(props)])
 
-  // console.log(trigger);
+  const toggle = (triggerStr: string, bool: boolean) => {
+    if (disabled) return
+    if (trigger === triggerStr && bool !== visible) {
+      if (controlledVisible === undefined) {
+        setVisible(bool)
+      }
+      onVisibleChange(bool)
+    }
+  }
+
+  const clearTime = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+    }
+  }
+
+  const handleClick = () => {
+    toggle('click', !visible)
+  }
+
+  const handleMouseEnter = () => {
+    clearTime()
+    timeoutRef.current = setTimeout(() => {
+      toggle('hover', true)
+    }, mouseEnterDelay * 1000)
+  }
+
+  const handleMouseLeave = () => {
+    clearTime()
+    timeoutRef.current = setTimeout(() => {
+      toggle('hover', false)
+    }, mouseLeaveDelay * 1000)
+  }
+
+  const renderDropDown = ({
+    hasTriangle,
+    prefixCls,
+    dropDownClassName,
+    transitionName,
+    dropDownStyle,
+    content
+  }: IPortalProps) => {
+    const classes = cx(
+      prefixCls,
+      {
+        [`${prefixCls}-${newPlacement}`]: newPlacement, // 类名替换 修改方向
+        [`${prefixCls}-triangle`]: hasTriangle
+      },
+      dropDownClassName
+    )
+
+    const contentNode = (
+      <div
+        className={classes}
+        ref={contentRef}
+        // onClick={() => {
+        //   onVisibleChange(false)
+        // }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        style={dropDownStyle}
+      >
+        <div className={`${prefixCls}-content`}>{content}</div>
+      </div>
+    )
+
+    if (transitionName === '') {
+      return contentNode
+    }
+
+    return <Animate transitionName={transitionName}>{visible ? contentNode : null}</Animate>
+  }
+
+  useEnhancedEffect(() => {
+    if (visible && mountNode) {
+      getPosition(props, wrapperRef, contentRef, newPlacement, setPlacement)
+    }
+  }, [visible, mountNode])
+
+  useClickOutSide([contentRef, wrapperRef], () => {
+    if (isClickOutSideClose) {
+      toggle('click', false)
+    }
+  })
 
   return (
     <React.Fragment>
       <Component
-        onClick={handleClick(props)}
+        onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         style={wrapperStyle}
@@ -123,9 +362,7 @@ const Portal: React.FC<IPortalProps> = props => {
       >
         {renderChildren(props, children)}
       </Component>
-      {mountNode
-        ? ReactDOM.createPortal(renderDropDown(props, contentRef), getContainer(props))
-        : null}
+      {mountNode ? ReactDOM.createPortal(renderDropDown(props), getContainer(props)) : null}
     </React.Fragment>
   )
 }

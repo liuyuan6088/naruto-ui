@@ -6,6 +6,145 @@
 .@{tooltip-prefix-cls} {
   position: absolute;
   z-index: @tooltip-basic-zIndex;
-  top: 50%;
-  left: 50%;
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5;
+  list-style: none;
+
+  &-content {
+    color: #fff;
+    background-color: @tooltip-content-bgc;
+    border-radius: @bordor-radius;
+    box-shadow: @tooltip-content-shadow;
+    min-width: 30px;
+    min-height: 32px;
+    padding: 6px 8px;
+    color: #fff;
+    text-align: left;
+    text-decoration: none;
+    word-wrap: break-word;
+    position: relative;
+    cursor: pointer;
+  }
+
+  &-triangle {
+    .@{tooltip-prefix-cls}-content {
+      &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  &-triangle.@{tooltip-prefix-cls}-top,
+  &-triangle.@{tooltip-prefix-cls}-topLeft,
+  &-triangle.@{tooltip-prefix-cls}-topRight {
+    padding-bottom: 8px;
+    .@{tooltip-prefix-cls}-content {
+      &::after {
+        bottom: -5px;
+        border-width: 5px 5px 0;
+        border-top-color: @tooltip-content-bgc;
+      }
+    }
+  }
+
+  &-triangle.@{tooltip-prefix-cls}-bottom,
+  &-triangle.@{tooltip-prefix-cls}-bottomLeft,
+  &-triangle.@{tooltip-prefix-cls}-bottomRight {
+    padding-top: 8px;
+    .@{tooltip-prefix-cls}-content {
+      &::after {
+        top: -5px;
+        border-width: 0 5px 5px;
+        border-bottom-color: @tooltip-content-bgc;
+      }
+    }
+  }
+
+  &-triangle.@{tooltip-prefix-cls}-left,
+  &-triangle.@{tooltip-prefix-cls}-leftTop,
+  &-triangle.@{tooltip-prefix-cls}-leftBottom {
+    padding-right: 8px;
+    .@{tooltip-prefix-cls}-content {
+      &::after {
+        right: -5px;
+        border-width: 5px 0 5px 5px;
+        border-left-color: @tooltip-content-bgc;
+      }
+    }
+  }
+
+  &-triangle.@{tooltip-prefix-cls}-right,
+  &-triangle.@{tooltip-prefix-cls}-rightTop,
+  &-triangle.@{tooltip-prefix-cls}-rightBottom {
+    padding-left: 8px;
+    .@{tooltip-prefix-cls}-content {
+      &::after {
+        left: -5px;
+        border-width: 5px 5px 5px 0;
+        border-right-color: @tooltip-content-bgc;
+      }
+    }
+  }
+
+  &-triangle.@{tooltip-prefix-cls}-top,
+  &-triangle.@{tooltip-prefix-cls}-bottom {
+    .@{tooltip-prefix-cls}-content {
+      &::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+  &-triangle.@{tooltip-prefix-cls}-topLeft,
+  &-triangle.@{tooltip-prefix-cls}-bottomLeft {
+    .@{tooltip-prefix-cls}-content {
+      &::after {
+        left: 16px;
+      }
+    }
+  }
+
+  &-triangle.@{tooltip-prefix-cls}-topRight,
+  &-triangle.@{tooltip-prefix-cls}-bottomRight {
+    .@{tooltip-prefix-cls}-content {
+      &::after {
+        right: 16px;
+      }
+    }
+  }
+
+  &-triangle.@{tooltip-prefix-cls}-leftTop,
+  &-triangle.@{tooltip-prefix-cls}-rightTop {
+    .@{tooltip-prefix-cls}-content {
+      &::after {
+        top: 8px;
+      }
+    }
+  }
+
+  &-triangle.@{tooltip-prefix-cls}-left,
+  &-triangle.@{tooltip-prefix-cls}-right {
+    .@{tooltip-prefix-cls}-content {
+      &::after {
+        top: 50%;
+        margin-top: -5px;
+      }
+    }
+  }
+
+  &-triangle.@{tooltip-prefix-cls}-leftBottom,
+  &-triangle.@{tooltip-prefix-cls}-rightBottom {
+    .@{tooltip-prefix-cls}-content {
+      &::after {
+        bottom: 8px;
+      }
+    }
+  }
 }

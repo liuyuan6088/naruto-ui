@@ -111,4 +111,13 @@ export default new Map([
       title: 'config',
     }
   ]],
+  ['/tooltip', [
+    {
+      title: 'Tooltip 文字提示',
+    }, {
+      title: '使用Tooltip',
+    }, {
+      title: 'Props',
+    }
+  ]],
 ]);

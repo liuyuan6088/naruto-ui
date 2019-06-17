@@ -1,0 +1,56 @@
+.demo-tooltip-1 {
+  position: relative;
+  height: 250px;
+  width: 700px;
+  margin: 0 auto;
+  button {
+    width: 110px;
+  }
+  .demo-tooltip-top {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    > div {
+      & + div {
+        margin-left: 10px;
+      }
+    }
+  }
+  .demo-tooltip-left {
+    position: absolute;
+    width: 110px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    > div {
+      & + div {
+        margin-top: 10px;
+      }
+    }
+  }
+  .demo-tooltip-right {
+    position: absolute;
+    right: 0;
+    width: 110px;
+    top: 50%;
+    transform: translateY(-50%);
+    > div {
+      & + div {
+        margin-top: 10px;
+      }
+    }
+  }
+  .demo-tooltip-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    > div {
+      & + div {
+        margin-left: 10px;
+      }
+    }
+  }
+}

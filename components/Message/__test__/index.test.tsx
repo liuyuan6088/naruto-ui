@@ -20,7 +20,7 @@ describe('render message', () => {
       content: 'top 100px'
     })
     // @ts-ignore
-    expect(document.querySelectorAll('.naruto-notification')[0].style.top).toBe('100px')
+    expect(document.querySelectorAll('.naruto-information')[0].style.top).toBe('100px')
   })
 
   // maxCount
