@@ -9,6 +9,8 @@ import { useEnhancedEffect, useClickOutSide } from '../utils/useCustom'
 
 const { useState, useRef, useEffect } = React
 
+const defaultDropdownTransitionName = ['slide-up', 'slide-down']
+
 const defaultProps: IPortalProps = {
   prefixCls: `${primaryName}-dropdown`,
   placement: 'top',
@@ -307,6 +309,7 @@ const Portal: React.FC<IPortalProps> = props => {
     dropDownClassName,
     transitionName,
     dropDownStyle,
+    mode,
     content
   }: IPortalProps) => {
     const classes = cx(
@@ -337,8 +340,12 @@ const Portal: React.FC<IPortalProps> = props => {
       return contentNode
     }
 
+    if (mode === 'dropdown' && defaultDropdownTransitionName.includes(transitionName)) {
+      transitionName = newPlacement.indexOf('top') > -1 ? 'slide-down' : 'slide-up'
+    }
+    // TODO: Animate => 修改方向第一次无动画 使用CSSTransition没有，同时修改css动画
     return (
-      <Animate component="" transitionName={transitionName}>
+      <Animate component="" transitionName={transitionName} transitionAppear>
         {visible ? contentNode : null}
       </Animate>
     )

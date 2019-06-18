@@ -1,0 +1,39 @@
+@import '../../styles/theme/default.less';
+
+@dropdown-prefix-cls: ~"@{primary-name}-dropdown";
+
+.@{dropdown-prefix-cls} {
+  position: absolute;
+  z-index: @dropdown-basic-zIndex;
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5;
+  list-style: none;
+
+  &-wrapper {
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  &-content {
+    color: @gray-1;
+    background-color: #fff;
+    border-radius: @bordor-radius;
+    box-shadow: @dropdown-content-shadow;
+    padding: 2px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  &-bottomLeft,
+  &-bottom,
+  &-bottomRight {
+    padding-top: 4px;
+  }
+
+  &-topLeft,
+  &-top,
+  &-topRight {
+    padding-bottom: 4px;
+  }
+}

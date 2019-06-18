@@ -2,7 +2,6 @@ import * as React from 'react'
 import Portal from '../Portal'
 import { ITooltipProps } from './type'
 import { primaryName } from '../utils/constant'
-import cx from 'classnames'
 import './style/index.less'
 
 const defaultProps: ITooltipProps = {
@@ -28,15 +27,10 @@ const Tooltip: React.FC<ITooltipProps> = props => {
     ...rest
   } = props
 
-  const classes = cx({
-    [`${prefixCls}-${placement}`]: placement
-  })
-
   const content = <div className={`${prefixCls}-content-inner`}>{title}</div>
 
   return (
     <Portal
-      dropDownClassName={classes}
       prefixCls={prefixCls}
       visible={visible}
       content={content}
