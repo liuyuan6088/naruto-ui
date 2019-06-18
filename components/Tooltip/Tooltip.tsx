@@ -45,7 +45,7 @@ const Tooltip: React.FC<ITooltipProps> = props => {
       placement={placement}
       trigger={trigger}
       onVisibleChange={onVisibleChange}
-      wrapperStyle={{ display: 'inline-block' }}
+      wrapperClassName={`${prefixCls}-wrapper`}
       hasTriangle
       {...rest}
     >

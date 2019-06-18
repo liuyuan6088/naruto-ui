@@ -240,6 +240,7 @@ const Portal: React.FC<IPortalProps> = props => {
     isClickOutSideClose,
     wrapperComponent: Component,
     wrapperStyle,
+    wrapperClassName,
     placement,
     onVisibleChange,
     visible: controlledVisible,
@@ -336,7 +337,11 @@ const Portal: React.FC<IPortalProps> = props => {
       return contentNode
     }
 
-    return <Animate transitionName={transitionName}>{visible ? contentNode : null}</Animate>
+    return (
+      <Animate component="" transitionName={transitionName}>
+        {visible ? contentNode : null}
+      </Animate>
+    )
   }
 
   useEnhancedEffect(() => {
@@ -358,6 +363,7 @@ const Portal: React.FC<IPortalProps> = props => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         style={wrapperStyle}
+        className={wrapperClassName}
         ref={wrapperRef}
       >
         {renderChildren(props, children)}

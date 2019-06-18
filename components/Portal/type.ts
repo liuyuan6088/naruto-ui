@@ -22,6 +22,8 @@ export interface IPortalProps {
   wrapperComponent?: string | any;
   // wrapperStyle 包裹层的样式
   wrapperStyle?: React.CSSProperties;
+  // wrapper 类名
+  wrapperClassName?: string;
   // disabled 是否禁用
   disabled?: boolean;
   // visible 是否可见

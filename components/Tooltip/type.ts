@@ -25,4 +25,6 @@ export interface ITooltipProps {
   mouseLeaveDelay?: number;
   // 动画的类名
   transitionName?: string;
+  // 配置渲染节点的输出位置
+  getContainer?: () => HTMLElement;
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Cold from './Prism';
-import { Icon } from 'components';
+import { Icon, Tooltip } from 'components';
 import './index.less';
 
 const { useState } = React;
@@ -20,7 +20,9 @@ const CodeBlock: React.FC<IconProps> = React.memo(({ children, code }) => {
         { children }
       </div>
       <div className={`${prefixCls}-block-description dash`}>
-        <Icon type='code' onClick={() => setOpen(!open)} />
+        <Tooltip title={open ? '收起代码' : '展开代码'}>
+          <Icon type='code' onClick={() => setOpen(!open)} />
+        </Tooltip>
       </div>
       <div className={`${prefixCls}-block-code ${open ? 'open' : ''}`}>
         <Cold>{code}</Cold>
