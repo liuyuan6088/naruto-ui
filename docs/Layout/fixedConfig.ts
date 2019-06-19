@@ -129,4 +129,13 @@ export default new Map([
       title: 'Props',
     }
   ]],
+  ['/popover', [
+    {
+      title: 'Popover 气泡卡片',
+    }, {
+      title: '使用Popover',
+    }, {
+      title: 'Props',
+    }
+  ]],
 ]);

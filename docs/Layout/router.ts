@@ -11,6 +11,7 @@ import Message from '../components/Message';
 import Notification from '../components/Notification';
 import Tooltip from '../components/Tooltip';
 import Dropdown from '../components/Dropdown';
+import Popover from '../components/Popover';
 
 export const rootPath = '/naruto-ui'
 
@@ -71,6 +72,11 @@ const route: RouteConfig = [
         name: 'BackTop 回到顶部',
         path: '/backTop',
         component: BackTop,
+      }, {
+        key: '下拉框',
+        name: 'Dropdown 下拉框',
+        path: '/dropdown',
+        component: Dropdown,
       }
     ],
   }, {
@@ -112,10 +118,10 @@ const route: RouteConfig = [
         path: '/tooltip',
         component: Tooltip,
       }, {
-        key: '下拉框',
-        name: 'Dropdown 下拉框',
-        path: '/dropdown',
-        component: Dropdown,
+        key: '气泡卡片',
+        name: 'Popover 气泡卡片',
+        path: '/popover',
+        component: Popover,
       }
     ],
   }

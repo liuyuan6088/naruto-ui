@@ -1,0 +1,172 @@
+@import '../../styles/theme/default.less';
+
+@popover-prefix-cls: ~"@{primary-name}-popover";
+
+.@{popover-prefix-cls} {
+  position: absolute;
+  z-index: @popover-basic-zIndex;
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5;
+  list-style: none;
+  cursor: pointer;
+
+  &-wrapper {
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  &-content {
+    background-color: #fff;
+    border-radius: @bordor-radius;
+    box-shadow: @popover-content-shadow;
+    text-align: left;
+    text-decoration: none;
+    word-wrap: break-word;
+    position: relative;
+    cursor: pointer;
+
+    &-title {
+      padding: 5px 15px;
+      min-width: 177px;
+      min-height: 32px;
+      margin: 0;
+      padding: 5px 16px 4px;
+      color: @gray-2;
+      font-weight: 600;
+      letter-spacing: 1px;
+      border-bottom: 1px solid @border-color-0;
+    }
+
+    &-info {
+      padding: 12px 16px;
+      margin: 0;
+      color: @gray-0;
+    }
+  }
+
+  &-top {
+    transform-origin: center 100%;
+  }
+
+  &-triangle {
+    .@{popover-prefix-cls}-content {
+      &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  &-triangle.@{popover-prefix-cls}-top,
+  &-triangle.@{popover-prefix-cls}-topLeft,
+  &-triangle.@{popover-prefix-cls}-topRight {
+    padding-bottom: 10px;
+    .@{popover-prefix-cls}-content {
+      &::after {
+        bottom: -5px;
+        border-width: 5px 5px 0;
+        border-top-color: #fff;
+      }
+    }
+  }
+  
+  &-triangle.@{popover-prefix-cls}-bottom,
+  &-triangle.@{popover-prefix-cls}-bottomLeft,
+  &-triangle.@{popover-prefix-cls}-bottomRight {
+    padding-top: 10px;
+    .@{popover-prefix-cls}-content {
+      &::after {
+        top: -5px;
+        border-width: 0 5px 5px;
+        border-bottom-color: #fff;
+      }
+    }
+  }
+
+  &-triangle.@{popover-prefix-cls}-left,
+  &-triangle.@{popover-prefix-cls}-leftTop,
+  &-triangle.@{popover-prefix-cls}-leftBottom {
+    padding-right: 10px;
+    .@{popover-prefix-cls}-content {
+      &::after {
+        right: -5px;
+        border-width: 5px 0 5px 5px;
+        border-left-color: #fff;
+      }
+    }
+  }
+
+  &-triangle.@{popover-prefix-cls}-right,
+  &-triangle.@{popover-prefix-cls}-rightTop,
+  &-triangle.@{popover-prefix-cls}-rightBottom {
+    padding-left: 10px;
+    .@{popover-prefix-cls}-content {
+      &::after {
+        left: -5px;
+        border-width: 5px 5px 5px 0;
+        border-right-color: #fff;
+      }
+    }
+  }
+
+  &-triangle.@{popover-prefix-cls}-top,
+  &-triangle.@{popover-prefix-cls}-bottom {
+    .@{popover-prefix-cls}-content {
+      &::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+  &-triangle.@{popover-prefix-cls}-topLeft,
+  &-triangle.@{popover-prefix-cls}-bottomLeft {
+    .@{popover-prefix-cls}-content {
+      &::after {
+        left: 16px;
+      }
+    }
+  }
+
+  &-triangle.@{popover-prefix-cls}-topRight,
+  &-triangle.@{popover-prefix-cls}-bottomRight {
+    .@{popover-prefix-cls}-content {
+      &::after {
+        right: 16px;
+      }
+    }
+  }
+
+  &-triangle.@{popover-prefix-cls}-leftTop,
+  &-triangle.@{popover-prefix-cls}-rightTop {
+    .@{popover-prefix-cls}-content {
+      &::after {
+        top: 10px;
+      }
+    }
+  }
+
+  &-triangle.@{popover-prefix-cls}-left,
+  &-triangle.@{popover-prefix-cls}-right {
+    .@{popover-prefix-cls}-content {
+      &::after {
+        top: 50%;
+        margin-top: -5px;
+      }
+    }
+  }
+
+  &-triangle.@{popover-prefix-cls}-leftBottom,
+  &-triangle.@{popover-prefix-cls}-rightBottom {
+    .@{popover-prefix-cls}-content {
+      &::after {
+        bottom: 10px;
+      }
+    }
+  }
+}
