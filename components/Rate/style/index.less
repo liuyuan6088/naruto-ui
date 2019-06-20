@@ -1,0 +1,67 @@
+@import '../../styles/theme/default.less';
+
+@rate-prefix-cls: ~"@{primary-name}-rate";
+
+.@{rate-prefix-cls} {
+
+  font-size: 20px;
+  line-height: unset;
+  list-style: none;
+  outline: none;
+
+  svg {
+    font-size: 1em;
+  }
+  &-star + &-star {
+    margin-left: 8px;
+  }
+
+  &-star {
+    display: inline-block;
+    position: relative;
+    transition: all .3s;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.3)
+    }
+    &-zero {
+      color: @rate-zero-color
+    }
+
+    &-active {
+      color: @rate-full-color
+    }
+
+    &-full {
+      color: @rate-full-color
+    }
+
+    &-half {
+      .@{rate-prefix-cls}-star-first {
+        color: @rate-full-color
+      }
+      .@{rate-prefix-cls}-star-second {
+        color: @rate-zero-color
+      }
+    }
+
+    &-first {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+    }
+  }
+
+  &-disabled {
+    .@{rate-prefix-cls}-star {
+      cursor: default;
+      &:hover {
+        transform: scale(1)
+      }
+    }
+  }
+  
+}

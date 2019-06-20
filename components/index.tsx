@@ -11,6 +11,7 @@ export { default as message } from './Message'
 export { default as notification } from './Notification'
 
 export { default as Avatar } from './Avatar'
+export { default as Rate } from './Rate'
 export { default as Tooltip } from './Tooltip'
 export { default as Dropdown } from './Dropdown'
 export { default as Popover } from './Popover'

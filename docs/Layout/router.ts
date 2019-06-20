@@ -12,6 +12,7 @@ import Notification from '../components/Notification';
 import Tooltip from '../components/Tooltip';
 import Dropdown from '../components/Dropdown';
 import Popover from '../components/Popover';
+import Rate from '../components/Rate';
 
 export const rootPath = '/naruto-ui'
 
@@ -112,6 +113,11 @@ const route: RouteConfig = [
         name: 'Avatar 头像',
         path: '/avatar',
         component: Avatar,
+      }, {
+        key: '评分',
+        name: 'Rate 评分',
+        path: '/rate',
+        component: Rate,
       }, {
         key: '文字提示',
         name: 'Tooltip 文字提示',

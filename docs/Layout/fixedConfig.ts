@@ -138,4 +138,13 @@ export default new Map([
       title: 'Props',
     }
   ]],
+  ['/rate', [
+    {
+      title: 'Rate 评分',
+    }, {
+      title: '使用Rate',
+    }, {
+      title: 'Props',
+    }
+  ]],
 ]);
