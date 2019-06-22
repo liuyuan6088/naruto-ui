@@ -26,5 +26,8 @@ export interface IRateProps {
   onChange?: (value: number) => void
   // 鼠标经过时数值变化的回调
   onHoverChange?: (value: number) => void
-  
+  // 高亮颜色
+  activeColor?: string
+  // 置灰颜色
+  disabledColor?: string 
 }

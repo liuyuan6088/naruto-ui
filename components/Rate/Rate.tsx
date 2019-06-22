@@ -45,6 +45,8 @@ const Rate: React.FC<IRateProps> = props => {
     disabled,
     allowHalf,
     tooltips,
+    activeColor,
+    disabledColor,
     className,
     style
   } = props
@@ -70,18 +72,41 @@ const Rate: React.FC<IRateProps> = props => {
 
   const getStarClasses = useCallback(
     (index: number) => {
-      return cx(
-        `${prefixCls}-star`,
-        {
-          [`${prefixCls}-star-zero`]: allowHalf
-            ? temporaryIndex + 0.5 < index
-            : temporaryIndex < index,
-          [`${prefixCls}-star-active`]: temporaryIndex === index || temporaryIndex + 0.5 === index,
-          [`${prefixCls}-star-full`]: temporaryIndex > index,
-          [`${prefixCls}-star-half`]: allowHalf && temporaryIndex + 0.5 === index
-        },
-        className
-      )
+      const isZero = allowHalf ? temporaryIndex + 0.5 < index : temporaryIndex < index
+      const isActive = temporaryIndex === index || temporaryIndex + 0.5 === index
+      const isFull = temporaryIndex > index
+      const isHalf = allowHalf && temporaryIndex + 0.5 === index
+      const classesColor = {
+        cx: cx(
+          `${prefixCls}-star`,
+          {
+            [`${prefixCls}-star-zero`]: isZero,
+            [`${prefixCls}-star-active`]: isActive,
+            [`${prefixCls}-star-full`]: isFull,
+            [`${prefixCls}-star-half`]: isHalf
+          },
+          className
+        ),
+        type: '',
+        color: []
+      }
+      if (isZero) {
+        classesColor.type = 'isZero'
+        classesColor.color = [disabledColor]
+      }
+      if (isActive) {
+        classesColor.type = 'isActive'
+        classesColor.color = [activeColor]
+      }
+      if (isFull) {
+        classesColor.type = 'isFull'
+        classesColor.color = [activeColor]
+      }
+      if (isHalf) {
+        classesColor.type = 'isHalf'
+        classesColor.color = [activeColor, disabledColor]
+      }
+      return classesColor
     },
     [temporaryIndex, activeIndex, value]
   )
@@ -144,25 +169,37 @@ const Rate: React.FC<IRateProps> = props => {
   }
 
   const renderStar = () => {
-    const starNode = (
-      <div>
-        <div className={`${prefixCls}-star-first`}>{character}</div>
-        <div className={`${prefixCls}-star-second`}>{character}</div>
-      </div>
-    )
+    const starNode = (color: any[]) => {
+      const colorStyle1 = color[0] ? { color: color[0] } : {}
+      const colorStyle2 = color[1] ? { color: color[1] } : {}
+      return (
+        <React.Fragment>
+          <div style={colorStyle1} className={`${prefixCls}-star-first`}>
+            {character}
+          </div>
+          <div
+            style={color.length === 2 ? colorStyle2 : colorStyle1}
+            className={`${prefixCls}-star-second`}
+          >
+            {character}
+          </div>
+        </React.Fragment>
+      )
+    }
     return Array.from({ length: count }, (_, k) => {
-      const starMouseMove = handleStarMouseMove(k + 1)
+      const classesColor = getStarClasses(k + 1)
+      const node = starNode(classesColor.color)
       return (
         <li
           ref={refList[k]}
-          className={getStarClasses(k + 1)}
+          className={classesColor.cx}
           key={k}
           style={style}
           onMouseEnter={handleStarMouseEnter(k + 1)}
-          onMouseMove={starMouseMove}
+          onMouseMove={handleStarMouseMove(k + 1)}
           onClick={handleStarClick(k + 1)}
         >
-          {tooltips ? <Tooltip title={tooltips[k] || ''}>{starNode}</Tooltip> : starNode}
+          {tooltips ? <Tooltip title={tooltips[k] || ''}>{node}</Tooltip> : node}
         </li>
       )
     })

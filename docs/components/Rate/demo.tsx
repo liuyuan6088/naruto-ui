@@ -51,6 +51,11 @@ const Demo: React.FC = () => {
         </div>
       </div>
 
+      <p>自定义颜色</p>
+      <div className='demo-spin-1'>
+        <Rate allowHalf defaultValue={2.5} activeColor='#f5222d' disabledColor='#b19a9a' />
+      </div>
+
       <p>禁用</p>
       <div className='demo-spin-1'>
         <Rate defaultValue={2} disabled />
