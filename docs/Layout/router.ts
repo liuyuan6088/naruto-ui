@@ -13,6 +13,7 @@ import Tooltip from '../components/Tooltip';
 import Dropdown from '../components/Dropdown';
 import Popover from '../components/Popover';
 import Rate from '../components/Rate';
+import Progress from '../components/Progress';
 
 export const rootPath = '/naruto-ui'
 
@@ -103,6 +104,11 @@ const route: RouteConfig = [
         name: 'Spin 加载中',
         path: '/spin',
         component: Spin,
+      }, {
+        key: '进度条',
+        name: 'Progress 进度条',
+        path: '/progress',
+        component: Progress,
       }
     ],
   }, {
