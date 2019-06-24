@@ -81,15 +81,19 @@ const renderCircle = (props: IProgressProps) => {
 }
 
 const Progress: React.FC<IProgressProps> = props => {
-  const { type, size, status, showInfo, prefixCls } = props
+  const { type, size, status, showInfo, prefixCls, className } = props
 
   const getClassNames = useCallback(() => {
-    return cx(prefixCls, {
-      [`${prefixCls}-${type}`]: type,
-      [`${prefixCls}-${size}`]: size,
-      [`${prefixCls}-${status}`]: status,
-      [`${prefixCls}-show-info`]: showInfo
-    })
+    return cx(
+      prefixCls,
+      {
+        [`${prefixCls}-${type}`]: type,
+        [`${prefixCls}-${size}`]: size,
+        [`${prefixCls}-${status}`]: status,
+        [`${prefixCls}-show-info`]: showInfo
+      },
+      className
+    )
   }, [type, size, status, showInfo])
 
   return (

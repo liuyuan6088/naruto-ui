@@ -20,17 +20,14 @@ imports:
 ## Props
 | 参数     | 说明     | 类型   | 可选值 | 默认值 |
 | -------- | -------- | ------ | ------ | ------ |
-| count | 个数 | number | - | 5 |
-| character | 自定义字符 | React.ReactNode | - | - |
-| tooltips | 自定义每项的提示信息 | string[] | - | - |
-| value | 当前数，受控值 | number | - | - |
-| defaultValue | 默认值 | number | - | 0 |
-| allowClear | 是否允许再次点击后清除 | boolean | - | true |
-| allowHalf | 是否允许半选 | boolean | - | - |
-| disabled | 只读，无法进行交互 | boolean | - | - |
-| onChange | 选择时的回调 | (value: number) => void | - | - |
-| className | 自定义样式类名 | string | - | - |
-| wrapperClassName | 外层容器类名 | string | - | - |
-| style | 自定义样式对象 | React.CSSProperties | - | - |
+| size | 尺寸 | SizeType | - | normal |
+| type | type | Type | `line` / `circle` | line |
+| percent | 当前的进度 | number | - | - |
+| showInfo | 是否显示进度条的数值 | boolean | - | - |
+| status | 状态 | StatusType | - | - |
+| width | 进度条的宽度 | number | - | - |
+| activeColor | activeColor | string | - | - |
+| textRender | 圆形的时候的文本渲染函数 | (percent: number) => React.ReactNode | - | - |
+
 
 

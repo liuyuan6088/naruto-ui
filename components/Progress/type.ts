@@ -11,6 +11,7 @@ export type StatusType = (typeof StatusTypes)[number];
 
 export interface IProgressProps {
   prefixCls?: string
+  className?: string
   // 尺寸 默认为normal
   size?: SizeType
   // type 类型 默认为line
