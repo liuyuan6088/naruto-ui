@@ -28,7 +28,8 @@
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
     "test-update": "jest --updateSnapshot",
     "style-fix": "stylelint \"components/**/*.scss\" --syntax scss --fix",
-    "publish-doc": "node ./scripts/publishdoc.js"
+    "publish-doc": "node ./scripts/publishdoc.js",
+    "gh-page": "npm run build-docs && npm run build-dll && npm run publish-doc"
   },
   "husky": {
     "hooks": {
