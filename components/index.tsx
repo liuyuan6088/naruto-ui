@@ -10,6 +10,7 @@ export { default as Spin } from './Spin'
 export { default as message } from './Message'
 export { default as notification } from './Notification'
 export { default as Progress } from './Progress'
+export { default as Tag } from './Tag'
 
 export { default as Avatar } from './Avatar'
 export { default as Rate } from './Rate'
