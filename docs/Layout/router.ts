@@ -14,6 +14,7 @@ import Dropdown from '../components/Dropdown';
 import Popover from '../components/Popover';
 import Rate from '../components/Rate';
 import Progress from '../components/Progress';
+import Tag from '../components/Tag';
 
 export const rootPath = '/naruto-ui'
 
@@ -134,6 +135,11 @@ const route: RouteConfig = [
         name: 'Popover 气泡卡片',
         path: '/popover',
         component: Popover,
+      }, {
+        key: '标签',
+        name: 'Tag 标签',
+        path: '/tag',
+        component: Tag,
       }
     ],
   }
