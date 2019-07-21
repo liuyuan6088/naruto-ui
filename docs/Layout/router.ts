@@ -15,6 +15,7 @@ import Popover from '../components/Popover';
 import Rate from '../components/Rate';
 import Progress from '../components/Progress';
 import Tag from '../components/Tag';
+import Weather from '../components/Weather';
 
 export const rootPath = '/naruto-ui'
 
@@ -55,6 +56,11 @@ const route: RouteConfig = [
         name: 'Icon 图标',
         path: '/icon',
         component: Icon,
+      }, {
+        key: '天气',
+        name: 'Weather 天气',
+        path: '/Weather',
+        component: Weather,
       }
     ]
   }, {
