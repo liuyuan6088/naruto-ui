@@ -112,7 +112,7 @@
     "loader-utils": "^1.2.3",
     "markdown-it": "^8.4.2",
     "markdown-it-container": "^2.0.0",
-    "node-sass": "^4.5.3",
+    "node-sass": "^7.0.0",
     "open-browser-webpack-plugin": "^0.0.5",
     "postcss-cssnext": "^3.0.2",
     "postcss-loader": "^2.0.6",
